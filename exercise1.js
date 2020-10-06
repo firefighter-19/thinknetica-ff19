@@ -26,7 +26,6 @@ console.log(x += y - x++ * z); // -3
 4.
 var x = 6, y = 15, z = 4;
 console.log(z = --x - y * 5); // -70
-
 // 1. --x = 5;
 // 2. 15 * 5;
 // 3. 5 - 75
@@ -35,5 +34,4 @@ console.log(z = --x - y * 5); // -70
 var a = 3;
 var b = ++a + 1 + a++;
 console.log(b); // 9
-
 // 4 + 4 + 1
