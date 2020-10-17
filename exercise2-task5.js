@@ -30,8 +30,11 @@ const employees = [
 //1. Узнать среднюю зарплату сотрудников
 
 let getSalary = (acc, item) => acc + Number(item.salary);
+let wholeSalary = employees.reduce(getSalary, 0)
+let averageSalary = wholeSalary / employees.length
 
-console.log(employees.reduce(getSalary, 0));
+console.log(averageSalary);
+
 
 
 
@@ -39,7 +42,6 @@ console.log(employees.reduce(getSalary, 0));
 
 let sortBySalary = (a, b) => {
 	if (a.salary > b.salary) return -1;
-	if (a.salary === b.salary) return 0;
 	if (a.salary < b.salary) return 1;
 }
 console.log(employees.sort(sortBySalary));

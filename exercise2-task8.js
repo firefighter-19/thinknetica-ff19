@@ -1,5 +1,4 @@
 //Создать объект human со следующими возможностями
-
 const human = Object.create({}, {
 	fullName: {
 		set: function (value) {
@@ -11,15 +10,18 @@ const human = Object.create({}, {
 	},
 	dateOfBirth: {
 		set: function (value) {
-			[this.age] = value;
-		}
+			birth = new Date(value);
+			today = new Date;
+			this.age = today.getFullYear() - birth.getFullYear();
+		},
+		
 	}
 })
 
 
 
 human.fullName = 'Alex Romanov';
-human.age = 2020 - 1983;
+human.dateOfBirth = '07.11.1992';
 
 console.log(human)
 console.log(human.fullName)
