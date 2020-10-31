@@ -1,5 +1,7 @@
 function MoneyBox() {
-    this.amount = 0;
+    let amount = 0;
+
+    this.amount = amount;
     this.addCoin = function() {
         return ++this.amount
     };
@@ -10,3 +12,6 @@ function MoneyBox() {
 
 let moneyBox = new MoneyBox();
 
+
+moneyBox.addCoin()
+console.log(moneyBox.getAmount());
