@@ -5,53 +5,54 @@ function TicketSales() {
         '123456': 300,
     }
 
-    function getRandomID(min = 100000, max = 999999) {
+    function getRandomID(min = 500000, max = 999999) {
         min = Math.ceil(min);
         max = Math.floor(max);
         let generatedID = Math.floor(Math.random() * (max - min)) + min;
         return generatedID;
     };
 
-    this.events = function() {
+    this.getEvents = function() {
         return events;
-    };
+    },
     
-    this.storage = function() {
+    this.getMoneyStorage = function() {
         return storage
     },
 
-    this.tickets = function() {
+    this.showTickets = function() {
         return tickets
     },
     this.createEvent = function (name, cost) {
         if (typeof(name) !== 'string') {
-            return 'Mistake'
+            return 'Something went wrong'
         }
-        return events = {event: name, price: cost}
+        return events[name] = cost;
     },
 
     this.buyTicket = function(name) {
-        storage += events.price;
+        storage += events[name]
         let id = getRandomID();
-        tickets[id] = events.price;
-        return `You've bought a ticket for ${events[name]} ${id}`
+        tickets[id] = events[name];
+        return `You've bought a ticket for ${id}`
     },
     
     this.returnTicket = function(id) {
-        storage -= events.price;
-        events[id] = null;
-        return `You've returned a ticket for ${events.event}`;
+        storage -= tickets[id];
+        delete tickets[id];
+        return `You've returned a ticket for ${id}`;
     }
 }
 
 let ticketWindow = new TicketSales();
 
 console.log(ticketWindow.createEvent('Mad', 300));
+console.log(ticketWindow.createEvent('Good', 300));
 console.log(ticketWindow.buyTicket('Mad'));
-console.log(ticketWindow.buyTicket('Mad'));
-console.log (ticketWindow.events())
-console.log (ticketWindow.storage())
-console.log (ticketWindow.tickets())
+console.log(ticketWindow.buyTicket('Good'));
+console.log (ticketWindow.getEvents());
+console.log (ticketWindow.getMoneyStorage());
+console.log (ticketWindow.showTickets());
 console.log(ticketWindow.returnTicket('123456'));
-console.log (ticketWindow.storage())
-console.log (ticketWindow.tickets())
+console.log (ticketWindow.getMoneyStorage());
+console.log (ticketWindow.showTickets());
