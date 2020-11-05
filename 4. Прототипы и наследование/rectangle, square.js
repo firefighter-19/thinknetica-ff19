@@ -9,18 +9,29 @@ function Calculate() {
 }
 
 function Square() {
-    //something
+    this.squared = function (a,b) {
+        if (a === b) {
+            return `${a} is length, ${b} is width`
+        }
+        return `It's not a squad`
+    }
 }
 
 function Rectangle() {
-    //something
+    this.rectangle = function (a,b) {
+        if (a !== b) {
+            return `${a} is length, ${b} is width`
+        }
+        return `It's not a rectangle`
+    }
 }
 
 Square.prototype = new Calculate();
-Rectangle.prototype = new Calculate();
+Rectangle.prototype = new Square();
 
-let mathCalc = new Square();
-
+let mathCalc = new Rectangle();
 
 console.log (mathCalc.perimeter(2,2))
+console.log (mathCalc.squared(2,2))
 console.log (mathCalc.square(2,2))
+console.log (mathCalc.rectangle(2,3))
