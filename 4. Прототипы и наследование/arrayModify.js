@@ -4,5 +4,3 @@ let array = [3,2,4,5,6];
 array.shuffle = () => {
     return array.sort(() => Math.random() - 0.5)
 }
-
-
