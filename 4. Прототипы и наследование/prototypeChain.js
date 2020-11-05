@@ -20,77 +20,51 @@ const john = {
     startVacation: function () {return 'vac'}
 };
 
-function Human (person) {
-    this.personInfo = function () {
-        let personInfo = {
-            name: person.name,
-            lastName: person.lastName,
-            location: person.location,
-            phoneNumber: person.phoneNumber
-        }
-        return personInfo
-    },
+function Human () {
+    this.name = 'John';
+    this.lastName = 'Smith';
+    this.phoneNumber = '+1234567890';
     this.eat = function() {
-        return person.eat();
+        return `${this.name} eats`;
     },
     this.sleep = function() {
-        return person.sleep();
+        return `${this.name} sleeps`;
     },
     this.callFriend = function() {
-        return person.callFriend();
+        return `${this.name} calls friend`;
     }
 }
-function Employee (person) {
-    this.employeeInfo = function () {
-        let employeeInfo = {
-            position: "Senior engineer",
-            startDate: "10.10.1990",
-            endDate: "10.10.2000",
-            baseSalary: "10000",
-            salaryCurrency: "$",
-            location: "Russia",
-            department: "IT",
-            phoneNumber: "+1234567890",
-        }
-        return employeeInfo
-    }
+function Employee () {
+   this.position = "Senior engineer";
+   this.baseSalary = "10000";
+   this.salaryCurrency = "$";
+   this.location = "Russia";
+   this.department = "IT";
 }
 
-function StartedToWork(person) {
-    this.fromDate = function() {
-        let fromDate = {
-            startDate: "10.10.1990",
-        }
-        return fromDate;
+function StartedToWork() {
+    this.startDate = "10.10.1990";
+    this.organizeMeeting = function() {
+        return `${this.name} organized the meeting`;
     },
     this.writeReport = function() {
-        return person.writeReport();
-    },
-    this.organizeMeeting = function() {
-        return person.organizeMeeting();
+        return `${this.name} writes the report`;
     }
 }
 
-function LeftJob(person) {
-    this.tillDate = function() {
-        let tillDate = {
-            endDate: "10.10.2000",
-        }
-        return tillDate;
-    },
+function LeftJob() {
+    this.endDate = "10.10.2000",
     this.retire = function() {
-        console.log (`${person.name} left`);
+        console.log (`${this.name} left job at ${this.endDate}`);
     },
     this.startVacation = function() {
-        console.log (`${person.name} on vacation`);
+        console.log (`${this.name} on vacation`);
     }
 }
 
-Employee.prototype = new Human(john);
-StartedToWork.prototype = new Employee(john);
-LeftJob.prototype = new Employee(john);
+Employee.prototype = new Human();
+StartedToWork.prototype = new Employee();
+LeftJob.prototype = new Employee();
 
-let employee = new StartedToWork(john);
-let employeeLeft = new LeftJob(john);
-
-console.log(employeeLeft.retire())
+let employee = new StartedToWork();
+let employeeLeft = new LeftJob();
