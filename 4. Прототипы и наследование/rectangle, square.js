@@ -1,37 +1,33 @@
 //С помощью прототипа реализовать структуру "Квадрат" которая будет расширять структуру "Прямоугольник", должна быть возможность задавать размеры обеим фигурам и получать их площадь и периметр
 function Calculate() {
-    this.square = function(a,b) {
-        return a * b;
+    this.getArea = function() {
+        return this.width * this.length;
     },
-    this.perimeter = function(a,b) {
-        return (a + b) * 2
+    this.getPerimeter = function() {
+        return (this.width + this.length) * 2;
     }
 }
 
-function Square() {
-    this.squared = function (a,b) {
-        if (a === b) {
-            return `${a} is length, ${b} is width`
-        }
-        return `It's not a squad`
-    }
+function Square(item) {
+    this.width = item;
+    this.length = item;
 }
 
-function Rectangle() {
-    this.rectangle = function (a,b) {
-        if (a !== b) {
-            return `${a} is length, ${b} is width`
-        }
-        return `It's not a rectangle`
-    }
+function Rectangle(width, length) {
+    this.width = width;
+    this.length = length;
 }
 
 Square.prototype = new Calculate();
+
+const square = new Square(2);
+
+console.log(square.getArea())
+console.log(square.getPerimeter())
+
 Rectangle.prototype = new Square();
 
-let mathCalc = new Rectangle();
+const rectangle = new Rectangle(2,3);
 
-console.log (mathCalc.perimeter(2,2))
-console.log (mathCalc.squared(2,2))
-console.log (mathCalc.square(2,2))
-console.log (mathCalc.rectangle(2,3))
+console.log(rectangle.getArea())
+console.log(rectangle.getPerimeter())
