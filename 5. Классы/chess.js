@@ -1,24 +1,67 @@
 class Pawn {
-    constructor() {
+    constructor(color) {
         this.notMoved = true;
+        this.color = color;
     }
     getMoves(board, start) {
-        // field[start[0][start[1]]]
         let moves = [];
-        moves.push([start[0] + 1,start[1]])
-        if (this.notMoved) {
-            moves.push([start[0] + 2,start[1]])
+
+        if (!board[start[0] + 1][start[1]]) {
+            moves.push([start[0] + 1,start[1]])
+            // this.notMoved = false;
+        }
+        if (this.notMoved && !board[start[0] + 2][start[1]] && !board[start[0] + 1][start[1]]) {
+            moves.push([start[0] + 2, start[1]])
             this.notMoved = false;
         }
-        return moves;
+        if (board[start[0] + 1][start[1] + 1] && this.color !== board[start[0] + 1][start[1] + 1]['color']) {
+            moves.push([start[0] + 1, start[1] + 1])
+        }
+        if (board[start[0] + 1][start[1] - 1] && this.color !== board[start[0] + 1][start[1] - 1]['color']) {
+            moves.push([start[0] + 1, start[1] - 1])
+        }
+        return moves
+    }
+}
+
+class Rook {
+    constructor(color) {
+        this.color = color;
+    }
+    getMoves(board, start) {
+        let moves = [];
+
+        let possibleMoves = [ board[start[0] + 1][start[1] + 1],
+                              board[start[0] + 2][start[1] + 2],
+                              board[start[0] + 3][start[1] + 3],
+                              board[start[0] + 4][start[1] + 4],
+                              board[start[0] + 5][start[1] + 5],
+                              board[start[0] + 6][start[1] + 6],
+                              board[start[0] + 7][start[1] + 7],
+                              board[start[0] - 1][start[1] - 1],
+                              board[start[0] - 2][start[1] - 2],
+                              board[start[0] - 3][start[1] - 3],
+                              board[start[0] - 4][start[1] - 4],
+                              board[start[0] - 5][start[1] - 5],
+                              board[start[0] - 6][start[1] - 6],
+                              board[start[0] - 7][start[1] - 7] ];
+
+        if (!board[start[0] + 1][start[1] + 1] && !board[start[0] + 1][start[1]]) {
+            moves.push([start[0] + 2,start[1]])
+        }
+        else if (board[start[0] + 1][start[1] + 1] || board[start[0] + 1][start[1] - 1] && this.color !== board[start[0] + 1][start[1] + 1]['color']) {
+            moves.push([start[0] + 1, start[1] + 1])
+            moves.push([start[0] + 1, start[1] - 1])
+        }
+        return moves
     }
 }
 
 class Board {
     constructor() {
-        this.field = [['bishop', 'knight', 'rook', 'queen', 'king', 'rook', 'knight', 'bishop'],
-                    [new Pawn, new Pawn, new Pawn, new Pawn, new Pawn, new Pawn, new Pawn, new Pawn],
-                    [null, null, null, null, null, null, null, null],
+        this.field = [['bishop', 'knight', new Rook('white'), 'queen', 'king', 'rook', 'knight', 'bishop'],
+                    [new Pawn('white'), new Pawn('white'), new Pawn, new Pawn, new Pawn, new Pawn, new Pawn, new Pawn],
+                    [new Pawn('white'), null, new Pawn('black'), null, null, null, null, null],
                     [null, null, null, null, null, null, null, null],
                     [null, null, null, null, null, null, null, null],
                     [null, null, null, null, null, null, null, null],
@@ -31,17 +74,17 @@ class Board {
                 console.log (`Incorrect move, empty point`)
                 return
             }
-        
-            let possibleMoves = this.field[start[0]][start[1]].getMoves(this.field, start).map((item) => item.join(','));
 
-            let stringEnd = end.join(',')
+            let possibleMoves = this.field[start[0]][start[1]].getMoves(this.field, start).map(item => item.join(','));
 
-            if(possibleMoves.includes(stringEnd)) {
+            console.log (possibleMoves)
+
+            let stringEnd = end.join(',');
+
+            if (possibleMoves.includes(stringEnd)) {
                 this.field[end[0]][end[1]] = this.field[start[0]][start[1]];
                 this.field[start[0]][start[1]] = null;
-                
-            } else {
-                console.log('error')
+                // return this.field
             }
         }
         showField() {
@@ -49,16 +92,11 @@ class Board {
         }
 }
 
-
 let board = new Board;
 
+console.log(board.move([1,1],[2,0]));
 
+board.showField()
 
-// console.log(move.field[0][1])
-board.move([1,0],[3,0]);
-board.move([1,0],[5,0]);
-// move.move([3,0],[3,3]);
-
-board.showField();
 
 
