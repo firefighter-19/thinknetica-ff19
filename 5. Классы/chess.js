@@ -122,78 +122,142 @@ class Rook {
 		this.color = color;
 	}
 	getMoves(board, start) {
-		let moves = [
-			board[start.y + 1][start.x + 1],
-			board[start.y + 2][start.x + 2],
-			board[start.y + 3][start.x + 3],
-			board[start.y + 4][start.x + 4],
-			board[start.y + 5][start.x + 5],
-			board[start.y + 6][start.x + 6],
-			board[start.y + 7][start.x + 7],
-			// board[start.y - 1][start.x - 1],
-			// board[start.y - 2][start.x - 2],
-			// board[start.y - 3][start.x - 3],
-			// board[start.y - 4][start.x - 4],
-			// board[start.y - 5][start.x - 5],
-			// board[start.y - 6][start.x - 6],
-			// board[start.y - 7][start.x - 7]
+		const coordinates = [
+			{
+				y: start.y + 1,
+				x: start.x + 1
+			},
+			{
+				y: start.y + 2,
+				x: start.x + 2
+			},
+			{
+				y: start.y + 3,
+				x: start.x + 3
+			},
+			{
+				y: start.y + 4,
+				x: start.x + 4
+			},
+			{
+				y: start.y + 5,
+				x: start.x + 5
+			},
+			{
+				y: start.y + 6,
+				x: start.x + 6
+			},
+			{
+				y: start.y + 7,
+				x: start.x + 7
+			},
+			{
+				y: start.y - 1,
+				x: start.x - 1
+			},
+			{
+				y: start.y - 2,
+				x: start.x - 2
+			},
+			{
+				y: start.y - 3,
+				x: start.x - 3
+			},
+			{
+				y: start.y - 4,
+				x: start.x - 4
+			},
+			{
+				y: start.y - 5,
+				x: start.x - 5
+			},
+			{
+				y: start.y - 6,
+				x: start.x - 6
+			},
+			{
+				y: start.y - 7,
+				x: start.x - 7
+			},
+			{
+				y: start.y + 1,
+				x: start.x - 1
+			},
+			{
+				y: start.y + 2,
+				x: start.x - 2
+			},
+			{
+				y: start.y + 3,
+				x: start.x - 3
+			},
+			{
+				y: start.y + 4,
+				x: start.x - 4
+			},
+			{
+				y: start.y + 5,
+				x: start.x - 5
+			},
+			{
+				y: start.y + 6,
+				x: start.x - 6
+			},
+			{
+				y: start.y + 7,
+				x: start.x - 7
+			},
+			{
+				y: start.y - 1,
+				x: start.x + 1
+			},
+			{
+				y: start.y - 2,
+				x: start.x + 2
+			},
+			{
+				y: start.y - 3,
+				x: start.x + 3
+			},
+			{
+				y: start.y - 4,
+				x: start.x + 4
+			},
+			{
+				y: start.y - 5,
+				x: start.x + 5
+			},
+			{
+				y: start.y - 6,
+				x: start.x + 6
+			},
+			{
+				y: start.y - 7,
+				x: start.x + 7
+			},
 		];
-		// {
-		// 	y: start.y + 2,
-		// 	x: start.x + 2
-		// },
-		// {
-		// 	y: start.y + 3,
-		// 	x: start.x + 3
-		// },
-		// {
-		// 	y: start.y + 4,
-		// 	x: start.x + 4
-		// },
-		// {
-		// 	y: start.y + 5,
-		// 	x: start.x + 5
-		// },
-		// {
-		// 	y: start.y + 6,
-		// 	x: start.x + 6
-		// },
-		// {
-		// 	y: start.y + 7,
-		// 	x: start.x + 7
-		// },
-		// {
-		// 	y: start.y - 1,
-		// 	x: start.x - 1
-		// },
-		// {
-		// 	y: start.y - 2,
-		// 	x: start.x - 2
-		// },
-		// {
-		// 	y: start.y - 3,
-		// 	x: start.x - 3
-		// },
-		// {
-		// 	y: start.y - 4,
-		// 	x: start.x - 4
-		// },
-		// {
-		// 	y: start.y - 5,
-		// 	x: start.x - 5
-		// },
-		// {
-		// 	y: start.y - 6,
-		// 	x: start.x - 6
-		// },
-		// {
-		// 	y: start.y - 7,
-		// 	x: start.x - 7
-		// },
 
-		let allowedMoves = [];
-		moves.filter(boardCell => console.log(boardCell))
-		return allowedMoves;
+		const moves = [];
+
+		// console.log(board[start.y + 1][start.x])  123231
+
+		coordinates.filter(el => {
+			if (el.y >= 0 && el.x <= 7 && el.y <= 7 && el.x >= 0) {
+				let figure = board[el.y][el.x];
+				if (figure === null || figure.color !== this.color || figure) {
+					moves.push(el)
+				}
+			}
+		});
+
+		console.log(moves)
+
+
+		// console.log(result)
+
+		// coordinates.forEach(el => moves.push(Object.values(el)));
+
+		// return moves;
 	}
 }
 
@@ -239,7 +303,7 @@ class King {
 			},
 		];
 
-		console.log(moves)
+
 
 		let allowedMoves = [];
 
@@ -272,15 +336,12 @@ class Board {
 	}
 
 	move(start, end) {
-		// if (!this.field[start[0]][start[1]]) {
-		// 	console.log(`Incorrect move, empty point`)
-		// 	return
-		// }
-		let possibleMoves = this.field[start.y][start.x].getMoves(this.field, start).map(item => item.join(','));
+		const possibleMoves = this.field[start.y][start.x].getMoves(board, start).map(item => item.join(','));
 		console.log(possibleMoves)
+		const stringEnd = Object.values(end).join(',');
+		// console.log(stringEnd)
+		console.log(this.field[start.y + 1][start.x])
 
-		let stringEnd = Object.values(end).join(',');
-		console.log(stringEnd)
 
 		if (possibleMoves.includes(stringEnd)) {
 			// console.log(`You've succefully attacked ${this.field[end.y][end.x]['name']} by ${this.field[start.y][start.x]['name']}`)
