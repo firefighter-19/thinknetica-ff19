@@ -51,7 +51,7 @@ class Pawn {
 			moves.push([start.y + 2, start[1]])
 			this.notMoved = false;
 		}
-		if (board[start.y + 1][start[1] + 1] && this.color !== board[start[0] + 1][start[1] + 1]['color']) {
+		if (board[start.y + 1][start.x + 1] && this.color !== board[start.y + 1][start.x + 1]['color']) {
 			moves.push([start.y + 1, start.x + 1])
 		}
 		if (board[start.y + 1][start.x - 1] && this.color !== board[start.y + 1][start.x - 1]['color']) {
@@ -119,7 +119,9 @@ class Knight {
 
 class Rook {
 	constructor(color) {
-		this.color = color;
+        this.color = color;
+        let name = 'Rook';
+		this.name = name;
 	}
 	getMoves(board, start) {
 		const coordinates = [
@@ -236,29 +238,23 @@ class Rook {
 				x: start.x + 7
 			},
 		];
-
-		const moves = [];
-
-		// console.log(board[start.y + 1][start.x])
-
-		coordinates.filter(el => {
-			if (el.y >= 0 && el.x <= 7 && el.y <= 7 && el.x >= 0) {
-				let figure = board[el.y][el.x];
-				if (figure === null || figure.color !== this.color || figure) {
-					moves.push(el)
+        
+        const allowedMoves = [];
+        
+        coordinates.forEach(el => {
+            if (el.y >= 0 && el.x <= 7 && el.y <= 7 && el.x >= 0) {
+                let figure = board[el.y][el.x];
+                if (figure !== null && figure.color !== this.color) {
+                    allowedMoves.push(Object.values(el)) // мне это не нравится, но пока это работает
+                }
+                if (figure === null) {
+					allowedMoves.push(Object.values(el))//true
 				}
-			}
-		});
+            }
+        })
 
-		console.log(moves)
-
-
-		// console.log(result)
-
-		// coordinates.forEach(el => moves.push(Object.values(el)));
-
-		// return moves;
-	}
+        return allowedMoves
+    }
 }
 
 class King {
@@ -321,34 +317,429 @@ class King {
 	}
 }
 
+class Bishop {
+    constructor(color) {
+        this.color = color;
+        let name = 'Bishop';
+		this.name = name;
+	}
+	getMoves(board, start) {
+		const coordinates = [
+			{
+				y: start.y + 1,
+				x: start.x
+			},
+			{
+				y: start.y + 2,
+				x: start.x
+			},
+			{
+				y: start.y + 3,
+				x: start.x
+			},
+			{
+				y: start.y + 4,
+				x: start.x
+			},
+			{
+				y: start.y + 5,
+				x: start.x
+			},
+			{
+				y: start.y + 6,
+				x: start.x
+			},
+			{
+				y: start.y + 7,
+				x: start.x
+			},
+			{
+				y: start.y,
+				x: start.x - 1
+			},
+			{
+				y: start.y,
+				x: start.x - 2
+			},
+			{
+				y: start.y,
+				x: start.x - 3
+			},
+			{
+				y: start.y,
+				x: start.x - 4
+			},
+			{
+				y: start.y,
+				x: start.x - 5
+			},
+			{
+				y: start.y,
+				x: start.x - 6
+			},
+			{
+				y: start.y,
+				x: start.x - 7
+			},
+			{
+				y: start.y,
+				x: start.x + 1
+			},
+			{
+				y: start.y,
+				x: start.x + 2
+			},
+			{
+				y: start.y,
+				x: start.x + 3
+			},
+			{
+				y: start.y,
+				x: start.x + 4
+			},
+			{
+				y: start.y,
+				x: start.x + 5
+			},
+			{
+				y: start.y,
+				x: start.x + 6
+			},
+			{
+				y: start.y,
+				x: start.x + 7
+			},
+			{
+				y: start.y - 1,
+				x: start.x
+			},
+			{
+				y: start.y - 2,
+				x: start.x
+			},
+			{
+				y: start.y - 3,
+				x: start.x
+			},
+			{
+				y: start.y - 4,
+				x: start.x
+			},
+			{
+				y: start.y - 5,
+				x: start.x
+			},
+			{
+				y: start.y - 6,
+				x: start.x
+			},
+			{
+				y: start.y - 7,
+				x: start.x
+			},
+		];
+        
+        const allowedMoves = [];
+        
+        coordinates.forEach(el => {
+            if (el.y >= 0 && el.x <= 7 && el.y <= 7 && el.x >= 0) {
+                let figure = board[el.y][el.x];
+                if (figure !== null && figure.color !== this.color) {
+                    allowedMoves.push(Object.values(el)) // мне это не нравится, но пока это работает
+                }
+                if (figure === null) {
+					allowedMoves.push(Object.values(el))//true
+				}
+            }
+        })
+
+        return allowedMoves
+    }
+}
+
+class Queen {
+    constructor(color) {
+        this.color = color;
+        let name = 'Queen';
+		this.name = name;
+	}
+	getMoves(board, start) {
+		const coordinates = [
+			{
+				y: start.y + 1,
+				x: start.x
+			},
+			{
+				y: start.y + 2,
+				x: start.x
+			},
+			{
+				y: start.y + 3,
+				x: start.x
+			},
+			{
+				y: start.y + 4,
+				x: start.x
+			},
+			{
+				y: start.y + 5,
+				x: start.x
+			},
+			{
+				y: start.y + 6,
+				x: start.x
+			},
+			{
+				y: start.y + 7,
+				x: start.x
+			},
+			{
+				y: start.y,
+				x: start.x - 1
+			},
+			{
+				y: start.y,
+				x: start.x - 2
+			},
+			{
+				y: start.y,
+				x: start.x - 3
+			},
+			{
+				y: start.y,
+				x: start.x - 4
+			},
+			{
+				y: start.y,
+				x: start.x - 5
+			},
+			{
+				y: start.y,
+				x: start.x - 6
+			},
+			{
+				y: start.y,
+				x: start.x - 7
+			},
+			{
+				y: start.y,
+				x: start.x + 1
+			},
+			{
+				y: start.y,
+				x: start.x + 2
+			},
+			{
+				y: start.y,
+				x: start.x + 3
+			},
+			{
+				y: start.y,
+				x: start.x + 4
+			},
+			{
+				y: start.y,
+				x: start.x + 5
+			},
+			{
+				y: start.y,
+				x: start.x + 6
+			},
+			{
+				y: start.y,
+				x: start.x + 7
+			},
+			{
+				y: start.y - 1,
+				x: start.x
+			},
+			{
+				y: start.y - 2,
+				x: start.x
+			},
+			{
+				y: start.y - 3,
+				x: start.x
+			},
+			{
+				y: start.y - 4,
+				x: start.x
+			},
+			{
+				y: start.y - 5,
+				x: start.x
+			},
+			{
+				y: start.y - 6,
+				x: start.x
+			},
+			{
+				y: start.y - 7,
+				x: start.x
+            },
+            {
+				y: start.y + 1,
+				x: start.x + 1
+			},
+			{
+				y: start.y + 2,
+				x: start.x + 2
+			},
+			{
+				y: start.y + 3,
+				x: start.x + 3
+			},
+			{
+				y: start.y + 4,
+				x: start.x + 4
+			},
+			{
+				y: start.y + 5,
+				x: start.x + 5
+			},
+			{
+				y: start.y + 6,
+				x: start.x + 6
+			},
+			{
+				y: start.y + 7,
+				x: start.x + 7
+			},
+			{
+				y: start.y - 1,
+				x: start.x - 1
+			},
+			{
+				y: start.y - 2,
+				x: start.x - 2
+			},
+			{
+				y: start.y - 3,
+				x: start.x - 3
+			},
+			{
+				y: start.y - 4,
+				x: start.x - 4
+			},
+			{
+				y: start.y - 5,
+				x: start.x - 5
+			},
+			{
+				y: start.y - 6,
+				x: start.x - 6
+			},
+			{
+				y: start.y - 7,
+				x: start.x - 7
+			},
+			{
+				y: start.y + 1,
+				x: start.x - 1
+			},
+			{
+				y: start.y + 2,
+				x: start.x - 2
+			},
+			{
+				y: start.y + 3,
+				x: start.x - 3
+			},
+			{
+				y: start.y + 4,
+				x: start.x - 4
+			},
+			{
+				y: start.y + 5,
+				x: start.x - 5
+			},
+			{
+				y: start.y + 6,
+				x: start.x - 6
+			},
+			{
+				y: start.y + 7,
+				x: start.x - 7
+			},
+			{
+				y: start.y - 1,
+				x: start.x + 1
+			},
+			{
+				y: start.y - 2,
+				x: start.x + 2
+			},
+			{
+				y: start.y - 3,
+				x: start.x + 3
+			},
+			{
+				y: start.y - 4,
+				x: start.x + 4
+			},
+			{
+				y: start.y - 5,
+				x: start.x + 5
+			},
+			{
+				y: start.y - 6,
+				x: start.x + 6
+			},
+			{
+				y: start.y - 7,
+				x: start.x + 7
+			}
+		];
+        
+        const allowedMoves = [];
+        
+        coordinates.forEach(el => {
+            if (el.y >= 0 && el.x <= 7 && el.y <= 7 && el.x >= 0) {
+                let figure = board[el.y][el.x];
+                if (figure !== null && figure.color !== this.color) {
+                    allowedMoves.push(Object.values(el)) // мне это не нравится, но пока это работает
+                }
+                if (figure === null) {
+					allowedMoves.push(Object.values(el))//true
+				}
+            }
+        })
+
+        console.log(allowedMoves)
+    }
+}
+
 class Board {
 	constructor() {
 		this.field = [
-			['bishop', new Knight('white'), new Rook('white'), 'queen', new King('white'), 'rook', new Knight('white'), 'bishop'],
-			[new Pawn('white'), null, new Pawn('white'), null, new Pawn('white'), new Pawn('white'), new Pawn('white'), new Pawn('white')],
+			[new Bishop('white'), new Knight('white'), new Rook('white'), new Queen('white'), new King('white'), new Rook('white'), new Knight('white'), new Bishop('white')],
+			[new Pawn('white'), new Pawn('white'), new Pawn('white'), new Pawn('white'), new Pawn('white'), new Pawn('white'), new Pawn('white'), new Pawn('white')],
 			[null, null, null, null, null, null, null, null],
 			[null, null, null, null, null, null, null, null],
 			[null, null, null, null, null, null, null, null],
 			[null, null, null, null, null, null, null, null],
 			[new Pawn('black'), new Pawn('black'), new Pawn('black'), new Pawn('black'), new Pawn('black'), new Pawn('black'), new Pawn('black'), new Pawn('black')],
-			['bishop', 'knight', 'rook', 'queen', 'king', 'rook', 'knight', 'bishop']
+			[new Bishop('black'), new Knight('black'), new Rook('black'), new Queen('black'), new King('black'), new Rook('black'), new Knight('black'), new Bishop('black')]
 		];
 	}
 
 	move(start, end) {
-		const possibleMoves = this.field[start.y][start.x].getMoves(board, start).map(item => item.join(','));
+		const possibleMoves = this.field[start.y][start.x].getMoves(this.field, start).map(item => item.join(','));
 		console.log(possibleMoves)
 		const stringEnd = Object.values(end).join(',');
 		// console.log(stringEnd)
-		console.log(this.field[start.y + 1][start.x])
 
-
-		if (possibleMoves.includes(stringEnd)) {
-			// console.log(`You've succefully attacked ${this.field[end.y][end.x]['name']} by ${this.field[start.y][start.x]['name']}`)
-			this.field[end.y][end.x] = this.field[start.y][start.x];
+		if (possibleMoves.includes(stringEnd) && this.field[end.y][end.x] !== null) {
+            console.log(`You've succefully attacked ${this.field[end.y][end.x]['name']} by ${this.field[start.y][start.x]['name']}`)
+            this.field[end.y][end.x] = this.field[start.y][start.x];
 			this.field[start.y][start.x] = null;
-			// return this.field;  подумать, что возвращать
-		}
+			return this.field;
+        }
+        if (possibleMoves.includes(stringEnd)) {
+            this.field[end.y][end.x] = this.field[start.y][start.x];
+            this.field[start.y][start.x] = null;
+            return this.field;
+        }
 		else {
 			return (`There is ${this.field[end.y][end.x]['name']} figure, unable to move there`)
 		}
@@ -362,10 +753,7 @@ let board = new Board;
 
 // board.move([4, 3], [4, 4])
 // board.move({ x: 4, y: 3 }, { x: 4, y: 4 })
-console.log(board.move({ y: 0, x: 2 }, { y: 1, x: 1 }))
+console.log(board.move({ y: 0, x: 3 }, { y: 1, x: 3 }))
 // board.showField()
 
 // board.showField()
-
-
-
