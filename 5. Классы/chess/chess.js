@@ -5,120 +5,16 @@ class Bishop {
 		this.name = name;
 	}
 	getMoves(board, start) {
-		const coordinates = [
-			{
-				y: start.y + 1,
-				x: start.x
-			},
-			{
-				y: start.y + 2,
-				x: start.x
-			},
-			{
-				y: start.y + 3,
-				x: start.x
-			},
-			{
-				y: start.y + 4,
-				x: start.x
-			},
-			{
-				y: start.y + 5,
-				x: start.x
-			},
-			{
-				y: start.y + 6,
-				x: start.x
-			},
-			{
-				y: start.y + 7,
-				x: start.x
-			},
-			{
-				y: start.y,
-				x: start.x - 1
-			},
-			{
-				y: start.y,
-				x: start.x - 2
-			},
-			{
-				y: start.y,
-				x: start.x - 3
-			},
-			{
-				y: start.y,
-				x: start.x - 4
-			},
-			{
-				y: start.y,
-				x: start.x - 5
-			},
-			{
-				y: start.y,
-				x: start.x - 6
-			},
-			{
-				y: start.y,
-				x: start.x - 7
-			},
-			{
-				y: start.y,
-				x: start.x + 1
-			},
-			{
-				y: start.y,
-				x: start.x + 2
-			},
-			{
-				y: start.y,
-				x: start.x + 3
-			},
-			{
-				y: start.y,
-				x: start.x + 4
-			},
-			{
-				y: start.y,
-				x: start.x + 5
-			},
-			{
-				y: start.y,
-				x: start.x + 6
-			},
-			{
-				y: start.y,
-				x: start.x + 7
-			},
-			{
-				y: start.y - 1,
-				x: start.x
-			},
-			{
-				y: start.y - 2,
-				x: start.x
-			},
-			{
-				y: start.y - 3,
-				x: start.x
-			},
-			{
-				y: start.y - 4,
-				x: start.x
-			},
-			{
-				y: start.y - 5,
-				x: start.x
-			},
-			{
-				y: start.y - 6,
-				x: start.x
-			},
-			{
-				y: start.y - 7,
-				x: start.x
-			},
-		];
+		const coordinates = [];
+
+		for (let i = 0; i < 8; i++) {
+			coordinates.push(
+				{ y: start.y + i, x: start.x },
+				{ y: start.y, x: start.x + i },
+				{ y: start.y - i, x: start.x },
+				{ y: start.y, x: start.x - i }
+			)
+		}
 
 		const boarders = coordinates.filter(el => el.y >= 0 && el.x <= 7 && el.y <= 7 && el.x >= 0)
 			.map(el => {
@@ -143,6 +39,7 @@ class Knight {
 		this.name = name;
 	}
 	getMoves(board, start) {
+
 		let coordinates = [
 			{
 				y: start.y + 2,
@@ -201,120 +98,16 @@ class Rook {
 		this.name = name;
 	}
 	getMoves(board, start) {
-		const coordinates = [
-			{
-				y: start.y + 1,
-				x: start.x + 1
-			},
-			{
-				y: start.y + 2,
-				x: start.x + 2
-			},
-			{
-				y: start.y + 3,
-				x: start.x + 3
-			},
-			{
-				y: start.y + 4,
-				x: start.x + 4
-			},
-			{
-				y: start.y + 5,
-				x: start.x + 5
-			},
-			{
-				y: start.y + 6,
-				x: start.x + 6
-			},
-			{
-				y: start.y + 7,
-				x: start.x + 7
-			},
-			{
-				y: start.y - 1,
-				x: start.x - 1
-			},
-			{
-				y: start.y - 2,
-				x: start.x - 2
-			},
-			{
-				y: start.y - 3,
-				x: start.x - 3
-			},
-			{
-				y: start.y - 4,
-				x: start.x - 4
-			},
-			{
-				y: start.y - 5,
-				x: start.x - 5
-			},
-			{
-				y: start.y - 6,
-				x: start.x - 6
-			},
-			{
-				y: start.y - 7,
-				x: start.x - 7
-			},
-			{
-				y: start.y + 1,
-				x: start.x - 1
-			},
-			{
-				y: start.y + 2,
-				x: start.x - 2
-			},
-			{
-				y: start.y + 3,
-				x: start.x - 3
-			},
-			{
-				y: start.y + 4,
-				x: start.x - 4
-			},
-			{
-				y: start.y + 5,
-				x: start.x - 5
-			},
-			{
-				y: start.y + 6,
-				x: start.x - 6
-			},
-			{
-				y: start.y + 7,
-				x: start.x - 7
-			},
-			{
-				y: start.y - 1,
-				x: start.x + 1
-			},
-			{
-				y: start.y - 2,
-				x: start.x + 2
-			},
-			{
-				y: start.y - 3,
-				x: start.x + 3
-			},
-			{
-				y: start.y - 4,
-				x: start.x + 4
-			},
-			{
-				y: start.y - 5,
-				x: start.x + 5
-			},
-			{
-				y: start.y - 6,
-				x: start.x + 6
-			},
-			{
-				y: start.y - 7,
-				x: start.x + 7
-			},
-		];
+		const coordinates = [];
+
+		for (let i = 0; i < 8; i++) {
+			coordinates.push(
+				{ y: start.y + i, x: start.x + i },
+				{ y: start.y - i, x: start.x - i },
+				{ y: start.y + i, x: start.x - i },
+				{ y: start.y - i, x: start.x + i }
+			)
+		}
 
 		const boarders = coordinates.filter(el => el.y >= 0 && el.x <= 7 && el.y <= 7 && el.x >= 0)
 			.map(el => {
@@ -339,41 +132,18 @@ class King {
 		this.name = name;
 	}
 	getMoves(board, start) {
-		let moves = [
-			{
-				y: start.y + 1,
-				x: start.x + 1
-			},
-			{
-				y: start.y - 1,
-				x: start.x + 1
-			},
-			{
-				y: start.y + 1,
-				x: start.x - 1
-			},
-			{
-				y: start.y + 1,
-				x: start.x
-			},
-			{
-				y: start.y,
-				x: start.x + 1
-			},
-			{
-				y: start.y - 1,
-				x: start.x - 1
-			},
-			{
-				y: start.y - 1,
-				x: start.x
-			},
-			{
-				y: start.y,
-				x: start.x - 1
-			},
-		];
+		const coordinates = [];
 
+		for (let i = 1; i <= 1; i++) {
+			coordinates.push(
+				{ y: start.y + i, x: start.x },
+				{ y: start.y - i, x: start.x },
+				{ y: start.y + i, x: start.x + i },
+				{ y: start.y - i, x: start.x + i },
+				{ y: start.y, x: start.x + i },
+				{ y: start.y, x: start.x - i }
+			)
+		}
 		const boarders = coordinates.filter(el => el.y >= 0 && el.x <= 7 && el.y <= 7 && el.x >= 0)
 			.map(el => {
 				let figure = board[el.y][el.x];
@@ -397,232 +167,21 @@ class Queen {
 		this.name = name;
 	}
 	getMoves(board, start) {
-		const coordinates = [
-			{
-				y: start.y + 1,
-				x: start.x
-			},
-			{
-				y: start.y + 2,
-				x: start.x
-			},
-			{
-				y: start.y + 3,
-				x: start.x
-			},
-			{
-				y: start.y + 4,
-				x: start.x
-			},
-			{
-				y: start.y + 5,
-				x: start.x
-			},
-			{
-				y: start.y + 6,
-				x: start.x
-			},
-			{
-				y: start.y + 7,
-				x: start.x
-			},
-			{
-				y: start.y,
-				x: start.x - 1
-			},
-			{
-				y: start.y,
-				x: start.x - 2
-			},
-			{
-				y: start.y,
-				x: start.x - 3
-			},
-			{
-				y: start.y,
-				x: start.x - 4
-			},
-			{
-				y: start.y,
-				x: start.x - 5
-			},
-			{
-				y: start.y,
-				x: start.x - 6
-			},
-			{
-				y: start.y,
-				x: start.x - 7
-			},
-			{
-				y: start.y,
-				x: start.x + 1
-			},
-			{
-				y: start.y,
-				x: start.x + 2
-			},
-			{
-				y: start.y,
-				x: start.x + 3
-			},
-			{
-				y: start.y,
-				x: start.x + 4
-			},
-			{
-				y: start.y,
-				x: start.x + 5
-			},
-			{
-				y: start.y,
-				x: start.x + 6
-			},
-			{
-				y: start.y,
-				x: start.x + 7
-			},
-			{
-				y: start.y - 1,
-				x: start.x
-			},
-			{
-				y: start.y - 2,
-				x: start.x
-			},
-			{
-				y: start.y - 3,
-				x: start.x
-			},
-			{
-				y: start.y - 4,
-				x: start.x
-			},
-			{
-				y: start.y - 5,
-				x: start.x
-			},
-			{
-				y: start.y - 6,
-				x: start.x
-			},
-			{
-				y: start.y - 7,
-				x: start.x
-			},
-			{
-				y: start.y + 1,
-				x: start.x + 1
-			},
-			{
-				y: start.y + 2,
-				x: start.x + 2
-			},
-			{
-				y: start.y + 3,
-				x: start.x + 3
-			},
-			{
-				y: start.y + 4,
-				x: start.x + 4
-			},
-			{
-				y: start.y + 5,
-				x: start.x + 5
-			},
-			{
-				y: start.y + 6,
-				x: start.x + 6
-			},
-			{
-				y: start.y + 7,
-				x: start.x + 7
-			},
-			{
-				y: start.y - 1,
-				x: start.x - 1
-			},
-			{
-				y: start.y - 2,
-				x: start.x - 2
-			},
-			{
-				y: start.y - 3,
-				x: start.x - 3
-			},
-			{
-				y: start.y - 4,
-				x: start.x - 4
-			},
-			{
-				y: start.y - 5,
-				x: start.x - 5
-			},
-			{
-				y: start.y - 6,
-				x: start.x - 6
-			},
-			{
-				y: start.y - 7,
-				x: start.x - 7
-			},
-			{
-				y: start.y + 1,
-				x: start.x - 1
-			},
-			{
-				y: start.y + 2,
-				x: start.x - 2
-			},
-			{
-				y: start.y + 3,
-				x: start.x - 3
-			},
-			{
-				y: start.y + 4,
-				x: start.x - 4
-			},
-			{
-				y: start.y + 5,
-				x: start.x - 5
-			},
-			{
-				y: start.y + 6,
-				x: start.x - 6
-			},
-			{
-				y: start.y + 7,
-				x: start.x - 7
-			},
-			{
-				y: start.y - 1,
-				x: start.x + 1
-			},
-			{
-				y: start.y - 2,
-				x: start.x + 2
-			},
-			{
-				y: start.y - 3,
-				x: start.x + 3
-			},
-			{
-				y: start.y - 4,
-				x: start.x + 4
-			},
-			{
-				y: start.y - 5,
-				x: start.x + 5
-			},
-			{
-				y: start.y - 6,
-				x: start.x + 6
-			},
-			{
-				y: start.y - 7,
-				x: start.x + 7
-			}
-		];
+
+		const coordinates = [];
+
+		for (let i = 0; i < 8; i++) {
+			coordinates.push(
+				{ y: start.y + i, x: start.x + i },
+				{ y: start.y - i, x: start.x - i },
+				{ y: start.y + i, x: start.x - i },
+				{ y: start.y - i, x: start.x + i },
+				{ y: start.y + i, x: start.x },
+				{ y: start.y, x: start.x + i },
+				{ y: start.y - i, x: start.x },
+				{ y: start.y, x: start.x - i }
+			)
+		}
 
 		const boarders = coordinates.filter(el => el.y >= 0 && el.x <= 7 && el.y <= 7 && el.x >= 0)
 			.map(el => {
@@ -704,18 +263,6 @@ class Pawn {
 
 		return movesArr;
 	}
-	changeFigure(board, end) {
-		let figure = board[end.y][end.x];
-		if (this.color === 'white' && end.y === 7) {
-			let queenWhite = new Queen('white');
-			console.log(new Queen('white'))
-			figure = queenWhite;
-		} else if (this.color === 'black' && end.y === 0) {
-			let queenBlack = new Queen('black');
-			let figure = board[end.y][end.x];
-			figure = queenBlack;
-		}
-	}
 }
 
 class Board {
@@ -741,21 +288,45 @@ class Board {
 			console.log(`You've succefully attacked ${this.field[end.y][end.x]['name']} by ${this.field[start.y][start.x]['name']}`)
 			this.field[end.y][end.x] = this.field[start.y][start.x];
 			this.field[start.y][start.x] = null;
-			return this.field;
 		}
 		if (possibleMoves.includes(stringEnd)) {
 			console.log(`You've succefully moved to next cell by ${this.field[start.y][start.x]['name']}`)
 			this.field[end.y][end.x] = this.field[start.y][start.x];
 			this.field[start.y][start.x] = null;
-			console.log(new Pawn('white'))
-			return this.field;
 		}
-		if (end.y === 7 && new Pawn('white') || end.y === 0 && new Pawn('black')) {
-			changeFigure();
-		}
-		else {
-			return (`There is ${this.field[end.y][end.x]['name']} figure, unable to move there`)
-		}
+		// if (end.y === 7 && new Pawn('white') || end.y === 0 && new Pawn('black')) {
+		// let result = +prompt('Choose figure: "1" - queen, "2" - bishop, "3" - rook, "4" - knight ', '1')
+		// let result = '1';
+		// if (new Pawn('white')) {
+		// 	if (result = 1) {
+		// 		this.field[end.y][end.x] = new Queen('white')
+		// 	}
+		// if (result = 2) {
+		// 	this.field[end.y][end.x] = new Bishop('white')
+		// }
+		// if (result = 3) {
+		// 	this.field[end.y][end.x] = new Rook('white')
+		// }
+		// if (result = 4) {
+		// 	this.field[end.y][end.x] = new Knight('white')
+		// }
+		// } else if (new Pawn('black')) {
+		// 	if (result = 1) {
+		// 		this.field[end.y][end.x] = new Queen('black')
+		// 	}
+		// 	if (result = 2) {
+		// 		this.field[end.y][end.x] = new Bishop('black')
+		// 	}
+		// 	if (result = 3) {
+		// 		this.field[end.y][end.x] = new Rook('black')
+		// 	}
+		// 	if (result = 4) {
+		// 		this.field[end.y][end.x] = new Knight('black')
+		// 	}
+		// } else {
+		// 	return (`There is ${this.field[end.y][end.x]['name']} figure, unable to move there`)
+		// }
+		return
 	}
 	showField() {
 		console.log(this.field);
@@ -766,5 +337,5 @@ let board = new Board;
 
 
 board.move({ y: 6, x: 1 }, { y: 7, x: 1 })
-// board.showField()
+board.showField()
 
