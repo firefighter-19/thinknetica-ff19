@@ -200,7 +200,7 @@ class Queen {
 }
 
 class Pawn {
-	constructor(color) {
+	constructor(color, notMoved) {
 		this.notMoved = true;
 		this.color = color;
 		let name = 'Pawn';
@@ -256,8 +256,6 @@ class Pawn {
 			})
 			.map(el => this.color === 'white' && el.y > start.y ? el : false);
 
-		this.notMoved = false;
-
 		const movesObj = boarders.slice(0, boarders.indexOf(false));
 		const movesArr = movesObj.map(el => Object.values(el))
 
@@ -274,26 +272,46 @@ class Board {
 			[null, null, null, null, null, null, null, null],
 			[null, null, null, null, null, null, null, null],
 			[null, null, null, null, null, null, null, null],
-			[null, new Pawn('white'), new Pawn('black'), new Pawn('black'), new Pawn('black'), new Pawn('black'), new Pawn('black'), new Pawn('black')],
-			[new Bishop('black'), null, new Rook('black'), new Queen('black'), new King('black'), new Rook('black'), new Knight('black'), new Bishop('black')]
+			[new Pawn('black'), new Pawn('black'), new Pawn('black'), new Pawn('black'), new Pawn('black'), new Pawn('black'), new Pawn('black'), new Pawn('black')],
+			[new Bishop('black'), new Knight('black'), new Rook('black'), new Queen('black'), new King('black'), new Rook('black'), new Knight('black'), new Bishop('black')]
 		];
+	}
+}
+
+class Game extends Board {
+	constructor() {
+		super();
+		this.killed = [];
+		this.moveChecker = 0;
+		this.moves = [];
 	}
 
 	move(start, end) {
+		// this.letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+		// this.numbers = [1, 2, 3, 4, 5, 6, 7, 8];
+		// this.board = [];
+		// this.letters.map(letter => this.numbers.forEach(num => this.board.push(letter + num)))
+		// const position = this.board.map(item => this.field.push({ item }))
+		// ==========================================  вопрос с присваиванием оставляем открытым ================ деструктуризация объекта нужна или new Map? ...
+
 		const possibleMoves = this.field[start.y][start.x].getMoves(this.field, start).map(item => item.join(','));
-		// console.log(possibleMoves)
+		console.log(possibleMoves)
 		const stringEnd = Object.values(end).join(',');
 		// console.log(stringEnd)
-		if (possibleMoves.includes(stringEnd) && this.field[end.y][end.x] !== null) {
-			console.log(`You've succefully attacked ${this.field[end.y][end.x]['name']} by ${this.field[start.y][start.x]['name']}`)
-			this.field[end.y][end.x] = this.field[start.y][start.x];
-			this.field[start.y][start.x] = null;
-		}
+
 		if (possibleMoves.includes(stringEnd)) {
-			console.log(`You've succefully moved to next cell by ${this.field[start.y][start.x]['name']}`)
+			this.killed.push(this.field[end.y][end.x]) // пушим мертую в фигуру массив мертвых фигур - сделано
 			this.field[end.y][end.x] = this.field[start.y][start.x];
 			this.field[start.y][start.x] = null;
+			if (this.field[end.y][end.x] === new Pawn) {
+				this.notMoved = false;
+			}
 		}
+		this.moves.push(start, end)
+		return;
+
+		// Возможность менять пешку на любую другую фигуру.
+
 		// if (end.y === 7 && new Pawn('white') || end.y === 0 && new Pawn('black')) {
 		// let result = +prompt('Choose figure: "1" - queen, "2" - bishop, "3" - rook, "4" - knight ', '1')
 		// let result = '1';
@@ -325,17 +343,29 @@ class Board {
 		// 	}
 		// } else {
 		// 	return (`There is ${this.field[end.y][end.x]['name']} figure, unable to move there`)
-		// }
-		return
+		// }		
+	}
+	showKilled() {
+		console.log(this.killed);
+	}
+	showCounter() {
+		console.log(this.counter);
+	}
+	showMoves() {
+		console.log(this.moves);
 	}
 	showField() {
-		console.log(this.field);
+		console.log(this.field)
 	}
 }
 
-let board = new Board;
+let game = new Game;
 
 
-board.move({ y: 6, x: 1 }, { y: 7, x: 1 })
-board.showField()
+game.move({ y: 1, x: 1 }, { y: 2, x: 1 })
+// game.move({ y: 2, x: 1 }, { y: 3, x: 1 })
+game.showField()
+// game.numerable()
+// game.showCounter()
+game.showMoves()
 
