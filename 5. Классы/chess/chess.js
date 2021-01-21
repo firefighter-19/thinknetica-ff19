@@ -200,7 +200,7 @@ class Queen {
 }
 
 class Pawn {
-	constructor(color, notMoved) {
+	constructor(color) {
 		this.notMoved = true;
 		this.color = color;
 		let name = 'Pawn';
@@ -254,11 +254,20 @@ class Pawn {
 					return false
 				}
 			})
-			.map(el => this.color === 'white' && el.y > start.y ? el : false);
+			.map(el => {
+				if (this.color === 'white' && el.y > start.y) {
+					return el
+				}
+				if (this.color === 'black' && el.y < start.y) {
+					return el
+				}
+			})
+			.sort()
 
-		const movesObj = boarders.slice(0, boarders.indexOf(false));
-		const movesArr = movesObj.map(el => Object.values(el))
+		this.notMoved = false;
 
+		const movesObj = boarders.slice(0, boarders.indexOf(undefined));
+		const movesArr = movesObj.map(el => Object.values(el));
 		return movesArr;
 	}
 }
@@ -281,75 +290,94 @@ class Board {
 class Game extends Board {
 	constructor() {
 		super();
-		this.killed = [];
-		this.moveChecker = 0;
+		this.killedWhite = [];
+		this.killedBlack = [];
+		this.moveCounter = 0;
+		this.checkMoveColor = 0;
 		this.moves = [];
+		this.possibleMoves = [];
 	}
-
+	getMoves(start) {
+		if (this.field[start.y][start.x] === null) {
+			console.log('Error! The cell is empty');
+		} else {
+			const moves = this.field[start.y][start.x].getMoves(this.field, start).map(item => item.join(','));
+			console.log(moves)
+			this.possibleMoves = moves;
+		}
+	};
 	move(start, end) {
-		// this.letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
-		// this.numbers = [1, 2, 3, 4, 5, 6, 7, 8];
-		// this.board = [];
-		// this.letters.map(letter => this.numbers.forEach(num => this.board.push(letter + num)))
-		// const position = this.board.map(item => this.field.push({ item }))
-		// ==========================================  вопрос с присваиванием оставляем открытым ================ деструктуризация объекта нужна или new Map? ...
-
-		const possibleMoves = this.field[start.y][start.x].getMoves(this.field, start).map(item => item.join(','));
-		console.log(possibleMoves)
 		const stringEnd = Object.values(end).join(',');
-		// console.log(stringEnd)
 
-		if (possibleMoves.includes(stringEnd)) {
-			this.killed.push(this.field[end.y][end.x]) // пушим мертую в фигуру массив мертвых фигур - сделано
-			this.field[end.y][end.x] = this.field[start.y][start.x];
-			this.field[start.y][start.x] = null;
-			if (this.field[end.y][end.x] === new Pawn) {
-				this.notMoved = false;
+		if (this.field[start.y][start.x].name === 'King' && this.field[start.y][start.x].color === 'white' && possibleMoves.length === 0) {
+			console.log('Game over, black won')
+		}
+		if (this.field[start.y][start.x].name === 'King' && this.field[start.y][start.x].color === 'black' && possibleMoves.length === 0) {
+			console.log('Game over, black won')
+		}
+		if (this.checkMoveColor === 0 && this.field[start.y][start.x].color === 'white') {
+			if (this.possibleMoves.includes(stringEnd)) {
+				this.moves.push(start, end)
+				this.killedBlack.push(this.field[end.y][end.x])
+				this.field[end.y][end.x] = this.field[start.y][start.x];
+				this.field[start.y][start.x] = null;
+				this.moveCounter++;
+				this.checkMoveColor++;
 			}
 		}
-		this.moves.push(start, end)
-		return;
+		else if (this.checkMoveColor === 1 && this.field[start.y][start.x].color === 'black') {
+			if (this.possibleMoves.includes(stringEnd)) {
+				this.moves.push(start, end)
+				this.killedWhite.push(this.field[end.y][end.x])
+				this.field[end.y][end.x] = this.field[start.y][start.x];
+				this.field[start.y][start.x] = null;
+				this.moveCounter++;
+				this.checkMoveColor--;
+			}
+		}
 
-		// Возможность менять пешку на любую другую фигуру.
+		// Возможность менять пешку на любую другую фигуру. (меняем на ферзя)
 
-		// if (end.y === 7 && new Pawn('white') || end.y === 0 && new Pawn('black')) {
-		// let result = +prompt('Choose figure: "1" - queen, "2" - bishop, "3" - rook, "4" - knight ', '1')
-		// let result = '1';
-		// if (new Pawn('white')) {
-		// 	if (result = 1) {
-		// 		this.field[end.y][end.x] = new Queen('white')
-		// 	}
-		// if (result = 2) {
-		// 	this.field[end.y][end.x] = new Bishop('white')
-		// }
-		// if (result = 3) {
-		// 	this.field[end.y][end.x] = new Rook('white')
-		// }
-		// if (result = 4) {
-		// 	this.field[end.y][end.x] = new Knight('white')
-		// }
-		// } else if (new Pawn('black')) {
-		// 	if (result = 1) {
-		// 		this.field[end.y][end.x] = new Queen('black')
-		// 	}
-		// 	if (result = 2) {
-		// 		this.field[end.y][end.x] = new Bishop('black')
-		// 	}
-		// 	if (result = 3) {
-		// 		this.field[end.y][end.x] = new Rook('black')
-		// 	}
-		// 	if (result = 4) {
-		// 		this.field[end.y][end.x] = new Knight('black')
-		// 	}
-		// } else {
-		// 	return (`There is ${this.field[end.y][end.x]['name']} figure, unable to move there`)
-		// }		
+		if (end.y === 7 && new Pawn('white') || end.y === 0 && new Pawn('black')) {
+			// let result = +prompt('Choose figure: "1" - queen, "2" - bishop, "3" - rook, "4" - knight ', '1')
+			let result = 1;
+			if (new Pawn('white')) {
+				if (result === 1) {
+					this.field[end.y][end.x] = new Queen('white')
+				}
+				if (result === 2) {
+					this.field[end.y][end.x] = new Bishop('white')
+				}
+				if (result === 3) {
+					this.field[end.y][end.x] = new Rook('white')
+				}
+				if (result === 4) {
+					this.field[end.y][end.x] = new Knight('white')
+				}
+			} else if (new Pawn('black')) {
+				let result = 1;
+				if (result === 1) {
+					this.field[end.y][end.x] = new Queen('black')
+				}
+				if (result === 2) {
+					this.field[end.y][end.x] = new Bishop('black')
+				}
+				if (result === 3) {
+					this.field[end.y][end.x] = new Rook('black')
+				}
+				if (result === 4) {
+					this.field[end.y][end.x] = new Knight('black')
+				}
+			} else {
+				return (`There is ${this.field[end.y][end.x]['name']} figure, unable to move there`)
+			}
+		}
 	}
 	showKilled() {
 		console.log(this.killed);
 	}
 	showCounter() {
-		console.log(this.counter);
+		console.log(this.moveCounter);
 	}
 	showMoves() {
 		console.log(this.moves);
@@ -359,13 +387,17 @@ class Game extends Board {
 	}
 }
 
+
 let game = new Game;
 
+game.getMoves({ y: 1, x: 4 })
+game.move({ y: 1, x: 4 }, { y: 3, x: 4 })
+game.getMoves({ y: 6, x: 1 })
+game.move({ y: 6, x: 1 }, { y: 4, x: 1 })
+game.getMoves({ y: 3, x: 4 })
 
-game.move({ y: 1, x: 1 }, { y: 2, x: 1 })
-// game.move({ y: 2, x: 1 }, { y: 3, x: 1 })
-game.showField()
-// game.numerable()
-// game.showCounter()
+
+
+game.showCounter()
 game.showMoves()
-
+// game.showField()
