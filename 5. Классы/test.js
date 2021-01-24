@@ -1,7 +1,3 @@
-let checker = (num) => {
-	if (num % 3 === 0) {
-		console.log(num)
-	}
-}
+let array = [0, 1, 2, 3, 4, 5]
 
-checker(4)
+console.log(Math.min(...array))

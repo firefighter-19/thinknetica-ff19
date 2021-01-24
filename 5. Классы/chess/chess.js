@@ -264,10 +264,21 @@ class Pawn {
 			})
 			.sort()
 
+		const movesObj = boarders.slice(0, boarders.indexOf(undefined))
+			.filter(el => {
+				if (this.notMoved === false && this.color === 'white') {
+					return el.y === start.y + 1
+				} else if (this.notMoved === false && this.color === 'black') {
+					return el.y === start.y - 1
+				} else {
+					return el
+				}
+			})
+
+		const movesArr = movesObj.map(el => Object.values(el));
+
 		this.notMoved = false;
 
-		const movesObj = boarders.slice(0, boarders.indexOf(undefined));
-		const movesArr = movesObj.map(el => Object.values(el));
 		return movesArr;
 	}
 }
