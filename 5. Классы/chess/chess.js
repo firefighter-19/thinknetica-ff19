@@ -1,13 +1,30 @@
+function sortMoves(board, coordinates) {
+	const boarders = coordinates.filter(el => el.y >= 0 && el.x <= 7 && el.y <= 7 && el.x >= 0)
+		.map(el => {
+			let figure = board[el.y][el.x];
+			if (figure === null || this.color !== figure.color) {
+				return el
+			}
+			return false
+		})
+		.sort()
+
+	const movesObj = boarders.slice(0, boarders.indexOf(false));
+	const movesArr = movesObj.map(el => Object.values(el))
+	return movesArr;
+}
+
 class Bishop {
 	constructor(color) {
 		this.color = color;
 		let name = 'Bishop';
 		this.name = name;
+		this.coordinates = [];
 	}
 	getMoves(board, start) {
 		const coordinates = [];
 
-		for (let i = 0; i < 8; i++) {
+		for (let i = 1; i < 8; i++) {
 			coordinates.push(
 				{ y: start.y + i, x: start.x },
 				{ y: start.y, x: start.x + i },
@@ -15,20 +32,7 @@ class Bishop {
 				{ y: start.y, x: start.x - i }
 			)
 		}
-
-		const boarders = coordinates.filter(el => el.y >= 0 && el.x <= 7 && el.y <= 7 && el.x >= 0)
-			.map(el => {
-				let figure = board[el.y][el.x];
-				if (figure === null || this.color !== figure.color) {
-					return el
-				}
-				return false
-			});
-
-		const movesObj = boarders.slice(0, boarders.indexOf(false));
-		const movesArr = movesObj.map(el => Object.values(el))
-
-		return movesArr;
+		return sortMoves(board, coordinates);
 	}
 }
 
@@ -74,20 +78,7 @@ class Knight {
 				x: start.x + 1
 			},
 		];
-
-		const boarders = coordinates.filter(el => el.y >= 0 && el.x <= 7 && el.y <= 7 && el.x >= 0)
-			.map(el => {
-				let figure = board[el.y][el.x];
-				if (figure === null || this.color !== figure.color) {
-					return el
-				}
-				return false
-			});
-
-		const movesObj = boarders.slice(0, boarders.indexOf(false));
-		const movesArr = movesObj.map(el => Object.values(el))
-
-		return movesArr;
+		return sortMoves(board, coordinates);
 	}
 }
 
@@ -100,7 +91,7 @@ class Rook {
 	getMoves(board, start) {
 		const coordinates = [];
 
-		for (let i = 0; i < 8; i++) {
+		for (let i = 1; i < 8; i++) {
 			coordinates.push(
 				{ y: start.y + i, x: start.x + i },
 				{ y: start.y - i, x: start.x - i },
@@ -108,20 +99,7 @@ class Rook {
 				{ y: start.y - i, x: start.x + i }
 			)
 		}
-
-		const boarders = coordinates.filter(el => el.y >= 0 && el.x <= 7 && el.y <= 7 && el.x >= 0)
-			.map(el => {
-				let figure = board[el.y][el.x];
-				if (figure === null || this.color !== figure.color) {
-					return el
-				}
-				return false
-			});
-
-		const movesObj = boarders.slice(0, boarders.indexOf(false));
-		const movesArr = movesObj.map(el => Object.values(el))
-
-		return movesArr;
+		return sortMoves(board, coordinates);
 	}
 }
 
@@ -144,19 +122,7 @@ class King {
 				{ y: start.y, x: start.x - i }
 			)
 		}
-		const boarders = coordinates.filter(el => el.y >= 0 && el.x <= 7 && el.y <= 7 && el.x >= 0)
-			.map(el => {
-				let figure = board[el.y][el.x];
-				if (figure === null || this.color !== figure.color) {
-					return el
-				}
-				return false
-			});
-
-		const movesObj = boarders.slice(0, boarders.indexOf(false));
-		const movesArr = movesObj.map(el => Object.values(el))
-
-		return movesArr;
+		return sortMoves(board, coordinates);
 	}
 }
 
@@ -170,7 +136,7 @@ class Queen {
 
 		const coordinates = [];
 
-		for (let i = 0; i < 8; i++) {
+		for (let i = 1; i < 8; i++) {
 			coordinates.push(
 				{ y: start.y + i, x: start.x + i },
 				{ y: start.y - i, x: start.x - i },
@@ -182,20 +148,7 @@ class Queen {
 				{ y: start.y, x: start.x - i }
 			)
 		}
-
-		const boarders = coordinates.filter(el => el.y >= 0 && el.x <= 7 && el.y <= 7 && el.x >= 0)
-			.map(el => {
-				let figure = board[el.y][el.x];
-				if (figure === null || this.color !== figure.color) {
-					return el
-				}
-				return false
-			});
-
-		const movesObj = boarders.slice(0, boarders.indexOf(false));
-		const movesArr = movesObj.map(el => Object.values(el))
-
-		return movesArr;
+		return sortMoves(board, coordinates);
 	}
 }
 
@@ -411,4 +364,4 @@ game.getMoves({ y: 3, x: 4 })
 
 game.showCounter()
 game.showMoves()
-// game.showField()
+game.showField()
