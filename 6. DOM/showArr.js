@@ -1,25 +1,24 @@
 const array = ['item1', ['item2', ['item3',]]]
 
-let body = document.querySelector('body');
-let ul = document.createElement('ul');
-let li = document.createElement('li');
+function createList(arr) {
+	const body = document.querySelector('body');
+	let ul = document.createElement('ul');
+	let li = document.createElement('li');
+	let clonedLi = li.cloneNode();
+	let clonedUl = ul.cloneNode();
+	let trdCloneLi = li.cloneNode();
+	let trdCloneUl = ul.cloneNode();
 
-body.append(ul)
-ul.append(li)
-li.textContent = array[0];
+	li.textContent = arr[0];
+	clonedLi.textContent = arr[1][0];
+	trdCloneLi.textContent = arr[1][1];
 
-let clonnedUl = ul.cloneNode()
-li.append(clonnedUl)
-let clonnedLi = li.cloneNode();
-clonnedUl.append(clonnedLi)
+	body.append(ul)
+	ul.append(li)
+	li.append(clonedUl)
+	clonedUl.append(clonedLi);
+	clonedLi.append(trdCloneUl);
+	trdCloneUl.append(trdCloneLi);
+}
 
-clonnedLi.textContent = array[1][0]
-
-let trdCloneUl = clonnedUl.cloneNode();
-let trdCloneLi = clonnedLi.cloneNode();
-clonnedLi.append(trdCloneUl);
-trdCloneUl.append(trdCloneLi)
-trdCloneLi.textContent = array[1][1]
-
-
-
+createList(array)

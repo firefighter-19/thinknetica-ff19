@@ -12,10 +12,10 @@ function parseTemplate(element, obj) {
 	}
 }
 
-console.log(parseTemplate(
+parseTemplate(
 	document.getElementById('item1'),
 	{
 		title: 'Hello world',
 		description: 'The first program',
 	}
-));
+);
