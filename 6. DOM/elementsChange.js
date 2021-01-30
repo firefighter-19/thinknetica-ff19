@@ -1,15 +1,14 @@
 function parseTemplate(element, obj) {
-	const childOne = element.firstElementChild;
-	const childTwo = element.lastElementChild;
-
-	if (childOne.getAttribute('data-field')) {
-		childOne.textContent = obj.title;
-	}
-	if (childTwo.getAttribute('data-field')) {
-		childTwo.textContent = obj.description;
-	} else {
-		return 'There is no "data-field"';
-	}
+	const div = element;
+	let elementsArr = Array.from(div.children)
+	elementsArr.forEach(item => {
+		if (item.dataset.field === 'title') {
+			item.textContent = obj.title;
+		}
+		if (item.dataset.field === 'description') {
+			item.textContent = obj.description;
+		}
+	})
 }
 
 parseTemplate(
