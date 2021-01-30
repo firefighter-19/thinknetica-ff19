@@ -1,5 +1,9 @@
 function parseTemplate(element, obj) {
 	const div = element;
+	if (!obj.hasOwnProperty('title') || !obj.hasOwnProperty('description')) {
+		console.log('error')
+	}
+
 	let elementsArr = Array.from(div.children)
 	elementsArr.forEach(item => {
 		if (item.dataset.field === 'title') {
