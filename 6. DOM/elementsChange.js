@@ -1,7 +1,7 @@
 function parseTemplate(element, obj) {
 	const div = element;
 	if (!obj.hasOwnProperty('title') || !obj.hasOwnProperty('description')) {
-		console.log('error')
+		return console.log('error')
 	}
 
 	let elementsArr = Array.from(div.children)
