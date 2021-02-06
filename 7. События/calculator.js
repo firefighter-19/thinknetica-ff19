@@ -68,11 +68,9 @@ function calculate() {
 				display.innerHTML = '';
 				break;
 			case 'Delete':
-				if (currentOperand !== null) {
-					currentOperand = currentOperand.slice(0, currentOperand.length - 1);
-					display.innerHTML = currentOperand;
-					break;
-				}
+				currentOperand = currentOperand.slice(0, currentOperand.length - 1);
+				display.innerHTML = currentOperand;
+				break;
 			default:
 				currentOperand = currentOperand === null ? button : currentOperand + button;
 				display.innerHTML = currentOperand;
