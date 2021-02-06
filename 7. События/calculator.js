@@ -1,30 +1,39 @@
 function calculate() {
 	let display = document.querySelector('.display');
-	const actions = document.querySelectorAll('.calculator__line');
+	const calculator = document.querySelector('.calculator');
+	display.style = `display:flex;
+		 justify-content: flex-end;
+		 align-items: center;
+		 font-size: 24px;
+		 font-weight: 600;`;
 
 	let currentOperand = null;
-	let secondOperand = null; //20
+	let secondOperand = null;
 	let currentOperation = null;
 
 	const doAction = () => {
-		let result = null;
+		let result;
 		switch (currentOperation) {
 			case '/':
 				result = +secondOperand / +currentOperand;
-				display.innerHTML = result;
 				break;
 			case '*':
-				if (result === null) {
-					result = +secondOperand * +currentOperand;
-					display.innerHTML = result;
-					console.log(result)
-					break;
-				}
-				else if (result !== null) {
-					result = result * +currentOperand;
-					display.innerHTML = result;
-					break;
-				}
+				result = +secondOperand * +currentOperand;
+				break;
+			case '-':
+				result = +secondOperand - +currentOperand;
+				break;
+			case '+':
+				result = +secondOperand + +currentOperand;
+				break;
+		}
+		if (currentOperation === null) {
+			display.innerHTML = currentOperand;
+		} else {
+			currentOperand = result;
+			display.innerHTML = currentOperand;
+			currentOperation = null;
+			secondOperand = null;
 		}
 	}
 
@@ -37,12 +46,6 @@ function calculate() {
 
 	const showActions = (event) => {
 		const button = event.target.textContent;
-		display.style = `display:flex;
-		 justify-content: flex-end;
-		 align-items: center;
-		 font-size: 24px;
-		 font-weight: 600;`;
-
 		switch (button) {
 			case '/':
 				rewrite(button);
@@ -50,26 +53,77 @@ function calculate() {
 			case '*':
 				rewrite(button);
 				break;
+			case '-':
+				rewrite(button);
+				display.innerHTML = button;
+				break;
+			case '+':
+				rewrite(button);
+				break;
 			case '=':
 				doAction();
 				break;
-			case 'C':
+			case 'c':
 				currentOperand = null;
 				display.innerHTML = '';
 				break;
-			case 'del':
+			case 'Delete':
+				if (currentOperand !== null) {
+					currentOperand = currentOperand.slice(0, currentOperand.length - 1);
+					display.innerHTML = currentOperand;
+					break;
+				}
+			default:
+				currentOperand = currentOperand === null ? button : currentOperand + button;
+				display.innerHTML = currentOperand;
+				break;
+		}
+	};
+
+	const performActions = (keyValue) => {
+		switch (keyValue) {
+			case '/':
+				rewrite(keyValue);
+				break;
+			case '*':
+				rewrite(keyValue);
+				break;
+			case '-':
+				rewrite(keyValue);
+				display.innerHTML = button;
+				break;
+			case '+':
+				rewrite(keyValue);
+				break;
+			case '=':
+				doAction();
+				break;
+			case 'c':
+				currentOperand = null;
+				display.innerHTML = '';
+				break;
+			case 'Delete':
 				currentOperand = currentOperand.slice(0, currentOperand.length - 1);
 				display.innerHTML = currentOperand;
 				break;
 			default:
-				currentOperand = currentOperand === null ? button : currentOperand + button;
-				display.textContent = currentOperand;
-
+				currentOperand = currentOperand === null ? keyValue : currentOperand + keyValue;
+				display.innerHTML = currentOperand;
+				break;
 		}
 	};
 
-	actions.forEach(item => {
-		item.addEventListener('click', showActions)
+
+	calculator.addEventListener('click', showActions);
+	document.addEventListener('keypress', (event) => {
+		let keyValue = event.key;
+		performActions(keyValue)
+	});
+	document.addEventListener('keydown', (event) => {
+		let keyValue = event.key;
+		if (keyValue === 'Delete') {
+			performActions(keyValue)
+		}
 	})
 }
 calculate();
