@@ -37,6 +37,32 @@ function calculate() {
 		}
 	}
 
+	const countPercent = () => {
+		let result;
+		switch (currentOperation) {
+			case '/':
+				result = +secondOperand / (+secondOperand * (currentOperand / 100));
+				break;
+			case '*':
+				result = +secondOperand * (+secondOperand * (currentOperand / 100));
+				break;
+			case '-':
+				result = +secondOperand - +secondOperand * (currentOperand / 100);
+				break;
+			case '+':
+				result = +secondOperand + +secondOperand * (currentOperand / 100);
+				break;
+		}
+		if (currentOperation === null) {
+			display.innerHTML = currentOperand;
+		} else {
+			currentOperand = result;
+			display.innerHTML = currentOperand;
+			currentOperation = null;
+			secondOperand = null;
+		}
+	}
+
 	const rewrite = (button) => {
 		secondOperand = currentOperand;
 		currentOperand = null;
@@ -67,13 +93,22 @@ function calculate() {
 				currentOperand = null;
 				display.innerHTML = '';
 				break;
+			case '%':
+				countPercent();
+				break;
 			case 'Delete':
-				currentOperand = currentOperand.slice(0, currentOperand.length - 1);
-				display.innerHTML = currentOperand;
+				if (currentOperand !== null) {
+					currentOperand = currentOperand.slice(0, currentOperand.length - 1)
+					display.innerHTML = currentOperand;
+				}
 				break;
 			default:
 				currentOperand = currentOperand === null ? button : currentOperand + button;
-				display.innerHTML = currentOperand;
+				if (currentOperand.includes('..')) {
+					display.innerHTML = `Don't use two dots`
+				} else {
+					display.innerHTML = currentOperand;
+				}
 				break;
 		}
 	};
@@ -88,7 +123,7 @@ function calculate() {
 				break;
 			case '-':
 				rewrite(keyValue);
-				display.innerHTML = button;
+				display.innerHTML = keyValue;
 				break;
 			case '+':
 				rewrite(keyValue);
@@ -96,13 +131,18 @@ function calculate() {
 			case '=':
 				doAction();
 				break;
+			case 'Enter':
+				doAction();
+				break;
 			case 'c':
 				currentOperand = null;
 				display.innerHTML = '';
 				break;
-			case 'Delete':
-				currentOperand = currentOperand.slice(0, currentOperand.length - 1);
-				display.innerHTML = currentOperand;
+			case 'Backspace':
+				if (currentOperand !== null) {
+					currentOperand = currentOperand.slice(0, currentOperand.length - 1)
+					display.innerHTML = currentOperand;
+				}
 				break;
 			default:
 				currentOperand = currentOperand === null ? keyValue : currentOperand + keyValue;
@@ -115,14 +155,36 @@ function calculate() {
 	calculator.addEventListener('click', showActions);
 	document.addEventListener('keypress', (event) => {
 		let keyValue = event.key;
-		performActions(keyValue)
+		const allowedKeys = ['Enter', 'c'];
+		if (allowedKeys.includes(keyValue)) {
+			performActions(keyValue)
+		}
 	});
 	document.addEventListener('keydown', (event) => {
 		let keyValue = event.key;
-		if (keyValue === 'Delete') {
+		if (keyValue === 'Backspace') {
 			performActions(keyValue)
 		}
 	})
 }
 calculate();
 
+const addOperation = () => {
+	const input = document.querySelector('.field');
+	const input2 = document.querySelector('.field2')
+	const columnList = document.querySelector('tr');
+	const tr = document.createElement('tr');
+	tr.classList.add('calculator__column');
+	input2.addEventListener('click', () => {
+		if (input.value !== '' && input.value === '%') {
+			columnList.before(tr)
+			let td = document.createElement('td');
+			td.classList.add('calculator__line')
+			tr.append(td);
+			td.innerHTML = input.value;
+			input.innerHTML = '';
+			input.disabled = true;
+		}
+	})
+}
+addOperation();

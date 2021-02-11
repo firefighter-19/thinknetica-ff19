@@ -4,9 +4,11 @@
 	margin: 0 auto;
 	display: flex;
 	justify-content: center;
+	flex-direction: column;
 }
 .container {	
-	flex-direction: column;	
+	flex-direction: column;
+	margin: 0 auto;
 }
 
 .display {
@@ -33,7 +35,7 @@ tbody {
 }
 .calculator__column {
 	display: flex;
-	border: 1px solid black;
+	/* border: 1px solid black; */
 	flex: 1;
 }
 .calculator__line {
@@ -49,4 +51,16 @@ tbody {
 
 .calculator__line:hover {
 	background-color: rgb(59, 156, 163);
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	max-width: 200px;
+	margin-top: 20px;
+}
+
+input {
+	line-height: 25px;
+	margin: 5px 0;
 }
