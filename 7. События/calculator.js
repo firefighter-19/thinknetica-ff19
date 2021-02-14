@@ -169,7 +169,7 @@ function calculate() {
 }
 calculate();
 
-const addOperation = () => {
+function addOperation() {
 	const input = document.querySelector('.field');
 	const input2 = document.querySelector('.field2')
 	const columnList = document.querySelector('tr');
