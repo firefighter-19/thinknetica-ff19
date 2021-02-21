@@ -1,20 +1,16 @@
-function Promise(func) {
+function CustomPromise(func) {
 	let state = 'pending';
 	let value;
 	let deferred = null;
 
 	function resolve(newValue) {
 		try {
-			if (newValue && typeof newValue.then === 'function') {
+			if (newValue && newValue.then === 'function') {
 				newValue.then(resolve, reject);
 				return;
 			}
 			state = 'fulfilled';
 			value = newValue;
-
-			if (deferred) {
-				handle(deferred);
-			}
 		} catch (err) {
 			reject(err);
 		}
@@ -37,8 +33,8 @@ function Promise(func) {
 		setTimeout(function () {
 			let handlerCb;
 
-			if (state === 'resolved') {
-				handlerCb = handler.onResolved;
+			if (state === 'fulfilled') {
+				handlerCb = handler.onFulfilled;
 			}
 			else if (state === 'rejected') {
 				handlerCb = handler.onRejected;
@@ -52,7 +48,7 @@ function Promise(func) {
 					handler.reject(err);
 					return;
 				}
-				if (state === 'resolved') {
+				if (state === 'fulfilled') {
 					handler.resolve(returnValueOrReason);
 				}
 				else if (state === 'rejected') {
@@ -61,21 +57,28 @@ function Promise(func) {
 			}
 
 			if (!handlerCb) {
-				state === 'resolved' ? handler.resolve(value) : handler.reject(value);
+				this.state === 'fulfilled' ? handler.resolve(value) : handler.reject(value);
 				return;
 			}
-		}, 5000);
+		}, 0);
 	}
-
-	this.then = function (onResolved, onRejected) {
-		return new Promise(function (resolve, reject) {
+	this.then = function (onFulfilled, onRejected) {
+		return new CustomPromise((resolve, reject) => {
 			handle({
-				onResolved: onResolved,
+				onFulfilled: onFulfilled,
 				onRejected: onRejected,
 				reject: reject,
 				resolve: resolve
-			});
+			})
 		});
-	}
+	};
+
 	func(resolve, reject);
-}
+};
+
+let customPromise = new CustomPromise(resolve => {
+	resolve(1)
+})
+
+customPromise.then(value => console.log(value))
+
