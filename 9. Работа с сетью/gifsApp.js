@@ -1,13 +1,11 @@
 let input = document.querySelector('.search__box');
-let imgBox = document.querySelector('.img__box');
-let img = document.createElement('img');
-imgBox.append(img);
+let iframe = document.querySelector('iframe');
 
 const getGif = () => {
 	const apiGiphy = 'qjL5hFaEXiaEXz7atrAFipTLjqUwbllH';
 	input.addEventListener('input', event => event.target.value)
 	let name = input.value
-	return `https://api.giphy.com/v1/gifs/search?q=${name}&api_key=${apiGiphy}&limit=25`
+	return `https://api.giphy.com/v1/gifs/search?q=${name}&api_key=${apiGiphy}&limit=1`
 }
 
 const apiCall = (url) => {
@@ -16,7 +14,6 @@ const apiCall = (url) => {
 
 		request.addEventListener('load', (event) => {
 			const response = event.target;
-
 			if (response.status === 200) {
 				try {
 					const parsedResult = JSON.parse(response.response);
@@ -38,9 +35,22 @@ const apiCall = (url) => {
 	})
 }
 
-input.addEventListener('change', () => {
-	apiCall(getGif())
-		.then(gifs => {
-			console.log(gifs, 'data recieved')
-		})
+const checkCache = () => {
+	let gifsCache;
+	return function (data) {
+		for (let key of data) {
+			return gifsCache = key.embed_url;
+		}
+	}
+}
+let cache = checkCache();
+
+input.addEventListener('keydown', () => {
+	setTimeout(() => {
+		apiCall(getGif())
+			.then(gifs => cache(gifs.data))
+			.then(gifs => {
+				iframe.setAttribute('src', gifs)
+			})
+	}, 5000);
 })
