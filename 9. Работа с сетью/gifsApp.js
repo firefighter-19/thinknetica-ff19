@@ -1,11 +1,9 @@
 let input = document.querySelector('.search__box');
-let iframe = document.querySelector('iframe');
+let iframe = document.querySelector('.iframe');
 
-const getGif = () => {
-	const apiGiphy = 'qjL5hFaEXiaEXz7atrAFipTLjqUwbllH';
-	input.addEventListener('input', event => event.target.value)
-	let name = input.value;
-	return `https://api.giphy.com/v1/gifs/search?q=${name}&api_key=${apiGiphy}&limit=1`
+const getGif = (name) => {
+	const apiKey = 'qjL5hFaEXiaEXz7atrAFipTLjqUwbllH';
+	return `https://api.giphy.com/v1/gifs/search?q=${name}&api_key=${apiKey}&limit=1`
 }
 
 const apiCall = (url) => {
@@ -35,27 +33,37 @@ const apiCall = (url) => {
 	})
 }
 
-const checkCache = () => {
+let cache = () => {
 	let gifsCache = new Map();
-	return function (name, data) {
-		for (let key of data) {
-			if (!gifsCache.has(name)) {
-				gifsCache.set(search = name, link = key.embed_url);
-				return gifsCache.get(name)
-			} else {
-				return gifsCache.get(name)
+	return function (value, args) {
+		for (let key of args) {
+			if (!gifsCache.has(value)) {
+				gifsCache.set(search = value, link = key.embed_url);
 			}
+			return gifsCache.get(value)
 		}
 	}
 }
-let cache = checkCache();
+cache = cache();
 
-input.addEventListener('keydown', () => {
-	setTimeout(() => {
-		apiCall(getGif())
-			.then(gifs => cache(input.value, gifs.data))
-			.then(gifs => {
-				iframe.setAttribute('src', gifs)
-			})
-	}, 1500);
-})
+const debounce = (func, ms) => {
+	let timeout;
+	return function () {
+		const fnCall = () => func.apply(this, arguments);
+		clearTimeout(timeout);
+		timeout = setTimeout(fnCall, ms)
+	}
+}
+
+let onChange = (event) => {
+	let name = event.target.value;
+	apiCall(getGif(name))
+		.then(gifs => cache(name, gifs.data))
+		.then(gifs => {
+			iframe.setAttribute('href', gifs)
+		})
+}
+
+onChange = debounce(onChange, 500);
+
+input.addEventListener('keyup', onChange);
