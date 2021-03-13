@@ -35,13 +35,14 @@ const apiCall = (url) => {
 
 let cache = () => {
 	let gifsCache = new Map();
-	return function (value, args) {
+	return function (name, args) {
 		for (let key of args) {
-			if (!gifsCache.has(value)) {
-				gifsCache.set(search = value, link = key.embed_url);
+			let result = key.images.original.url;
+			if (!gifsCache.has(name)) {
+				gifsCache.set(name, result);
 			}
-			return gifsCache.get(value)
 		}
+		return gifsCache.get(name);
 	}
 }
 cache = cache();
@@ -55,13 +56,11 @@ const debounce = (func, ms) => {
 	}
 }
 
-let onChange = (event) => {
+let onChange = event => {
 	let name = event.target.value;
 	apiCall(getGif(name))
 		.then(gifs => cache(name, gifs.data))
-		.then(gifs => {
-			iframe.setAttribute('href', gifs)
-		})
+		.then(gifs => iframe.setAttribute('src', gifs))
 }
 
 onChange = debounce(onChange, 500);

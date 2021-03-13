@@ -1,47 +1,49 @@
-const debounce = (func, ms) => {
-	let timeout;
-	return function () {
+// const debounce = (func, ms) => {
+// 	let timeout;
+// 	return function () {
 
-		const fnCall = () => {
-			func.apply(this, arguments)
-		}
-		clearTimeout();
-		timeout = setTimeout(fnCall, ms)
-	}
-}
+// 		const fnCall = () => {
+// 			func.apply(this, arguments)
+// 		}
+// 		clearTimeout();
+// 		timeout = setTimeout(fnCall, ms)
+// 	}
+// }
 
-function onChange(e) {
-	console.log(e.target.value)
-}
+// function onChange(e) {
+// 	console.log(e.target.value)
+// }
 
-onChange = debounce(onChange, 1500);
+// onChange = debounce(onChange, 1500);
 
-document.querySelector('input').addEventListener('keyup', onChange);
+// document.querySelector('input').addEventListener('keyup', onChange);
 
 
-let throttle = (func, ms) => {
-	let isThrottled = false;
-	let savedThis;
-	let savedArgs;
+// let throttle = (func, ms) => {
+// 	let isThrottled = false;
+// 	let savedThis;
+// 	let savedArgs;
 
-	const wrapper = () => {
-		if (isThrottled) {
-			savedThis = this;
-			savedArgs = arguments;
-			return;
-		}
-		func.apply(this, arguments);
+// 	const wrapper = () => {
+// 		if (isThrottled) {
+// 			savedThis = this;
+// 			savedArgs = arguments;
+// 			return;
+// 		}
+// 		func.apply(this, arguments);
 
-		isThrottled = true;
+// 		isThrottled = true;
 
-		setTimeout(() => {
-			isThrottled = false;
-			if (savedArgs) {
-				wrapper.apply(savedThis, savedArgs);
-				savedThis = null;
-				savedArgs = null;
-			}
-		}, ms)
-	}
-	return wrapper;
-}
+// 		setTimeout(() => {
+// 			isThrottled = false;
+// 			if (savedArgs) {
+// 				wrapper.apply(savedThis, savedArgs);
+// 				savedThis = null;
+// 				savedArgs = null;
+// 			}
+// 		}, ms)
+// 	}
+// 	return wrapper;
+// }
+
+
