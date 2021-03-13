@@ -11,6 +11,7 @@ body {
 	display: flex;
 	width: 80px;
 	justify-content: space-between;
+	margin-bottom: 20px;
 }
 img {
 	cursor: pointer;
