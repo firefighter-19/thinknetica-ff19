@@ -1,7 +1,7 @@
 let input = document.querySelector('.search__box');
 let iframe = document.querySelector('.iframe');
 
-const getGif = (name) => {
+const apiKey = (name) => {
 	const apiKey = 'qjL5hFaEXiaEXz7atrAFipTLjqUwbllH';
 	return `https://api.giphy.com/v1/gifs/search?q=${name}&api_key=${apiKey}&limit=1`
 }
