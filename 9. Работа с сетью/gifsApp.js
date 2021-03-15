@@ -1,5 +1,5 @@
 let input = document.querySelector('.search__box');
-let iframe = document.querySelector('.iframe');
+let gif = document.querySelector('.gif');
 
 const apiKey = (name) => {
 	const apiKey = 'qjL5hFaEXiaEXz7atrAFipTLjqUwbllH';
@@ -60,7 +60,7 @@ let onChange = event => {
 	let name = event.target.value;
 	apiCall(apiKey(name))
 		.then(gifs => cache(name, gifs.data))
-		.then(gifs => iframe.setAttribute('src', gifs))
+		.then(gifs => gif.setAttribute('src', gifs))
 }
 
 onChange = debounce(onChange, 500);
