@@ -1,5 +1,5 @@
 let input = document.querySelector('.search__box');
-let iframe = document.querySelector('.iframe');
+let gif = document.querySelector('.gif');
 let paginationBox = document.querySelector('.pagination__box');
 
 const apiKey = (name) => {
@@ -59,21 +59,55 @@ const debounce = (func, ms) => {
 	}
 }
 
-let pagination = (arr) => {
-	let counter = 0;
+const slider = (arr) => {
+	liItems = [];
+	const ul = document.querySelector('.pagination__list');
+	if (ul.hasChildNodes()) {
+		while (ul.firstChild) {
+			ul.removeChild(ul.firstChild);
+		}
+	}
+	for (let i = 1; i <= arr.length; i++) {
+		let li = document.createElement('li');
+		li.classList.add('pagination__items');
+		ul.append(li);
+		liItems.push(li);
+	}
+
+	liItems[0].classList.add('active');
+	gif.setAttribute('src', arr[0]);
+
+	counter = 0;
 	paginationBox.addEventListener('click', e => {
 		if (e.target.classList.contains('seconds')) {
 			let limit = counter + 1;
 			for (counter; counter < limit && counter < arr.length; counter++) {
-				iframe.setAttribute('src', arr[counter])
-				console.log(counter)
+			}
+			if (counter < 10) {
+				gif.setAttribute('src', arr[counter]);
+				// try {
+				// 	liItems[counter - 1].classList.remove('active');
+				// }
+				// catch {
+				// 	alert('click one more time');
+				// }
+				liItems[counter].classList.add('active');
 			}
 		}
-		if (e.target.classList.contains('first')) {
+		else if (e.target.classList.contains('first')) {
 			let limit = counter - 1;
 			for (counter; counter > limit && counter >= 0; counter--) {
-				iframe.setAttribute('src', arr[counter])
+			}
+			if (counter >= 0) {
+				gif.setAttribute('src', arr[counter]);
+				try {
+					liItems[counter + 1].classList.remove('active');
+				}
+				catch {
+					alert('click one more time');
+				}
 				console.log(counter)
+				liItems[counter].classList.add('active');
 			}
 		}
 	})
@@ -83,7 +117,8 @@ let onChange = event => {
 	let name = event.target.value;
 	apiCall(apiKey(name))
 		.then(gifs => cache(name, gifs.data))
-		.then(gifs => pagination(gifs))
+		// .catch(gifs => console.log('something went wrong'))
+		.then(gifs => slider(gifs))
 }
 
 onChange = debounce(onChange, 500);
