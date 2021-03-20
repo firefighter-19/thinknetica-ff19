@@ -85,12 +85,12 @@ const slider = (arr) => {
 			}
 			if (counter < 10) {
 				gif.setAttribute('src', arr[counter]);
-				// try {
-				// 	liItems[counter - 1].classList.remove('active');
-				// }
-				// catch {
-				// 	alert('click one more time');
-				// }
+				try {
+					liItems[counter - 1].classList.remove('active');
+				}
+				catch {
+					alert('click one more time');
+				}
 				liItems[counter].classList.add('active');
 			}
 		}
