@@ -10,5 +10,4 @@ describe('Return integers count and show its sum', () => {
 	it('should show count and sum of the positive numbers', () => {
 		assert.deepEqual(countNumbers(arr), { count: 5, sum: 357 })
 	})
-
-})
+});

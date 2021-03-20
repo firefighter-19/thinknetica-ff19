@@ -12,9 +12,6 @@ const countNumbers = arr => {
 	}
 }
 
-const arr = [-91, -93, -45, 67, 96, 40, -34, 96, -42, 58]
-
-countNumbers('privet');
-
+const arr = [-91, -93, -45, 67, 96, 40, -34, 96, -42, 58];
 
 
