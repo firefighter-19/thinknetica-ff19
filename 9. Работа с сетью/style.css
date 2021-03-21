@@ -43,8 +43,11 @@ img {
 .first {
 	transform: rotate(180deg);
 }
-.seconds{
-	transition: 1s;
+.first:hover{
+	transform: rotate(180deg) scale(1.6);
+}
+.first, .seconds{
+	transition: 0.3s;
 }
 .seconds:hover{
 	transform: scale(1.6);
