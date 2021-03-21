@@ -3,14 +3,14 @@ function CustomPromise(func) {
 	let value;
 	let deferred = null;
 
-	function resolve(newValue) {
+	function resolve(data) {
 		try {
-			if (newValue && newValue.then === 'function') {
-				newValue.then(resolve, reject);
+			if (data && data.then === 'function') {
+				data.then(resolve, reject);
 				return;
 			}
 			state = 'fulfilled';
-			value = newValue;
+			value = data;
 		} catch (err) {
 			reject(err);
 		}
@@ -79,6 +79,5 @@ function CustomPromise(func) {
 let customPromise = new CustomPromise(resolve => {
 	resolve(1)
 })
-
 customPromise.then(value => console.log(value))
 
