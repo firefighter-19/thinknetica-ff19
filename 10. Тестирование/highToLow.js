@@ -58,11 +58,16 @@ class Calculator {
 	}
 	performOperation(operation) {
 		let [operator1, operand, operator2] = operation.split(' ');
-		if (!this.methods[operand] || isNaN(operator1) || isNaN(operator2)) {
-			return NaN
+		const possibleOperands = ['+', '-', '*', '**', '%', '/'];
+		if (possibleOperands.includes(operand)) {
+			if (!this.methods[operand] || isNaN(operator1) || isNaN(operator2)) {
+				return NaN
+			} else {
+				this.history.push(operation)
+				return this.methods[operand](+operator1, +operator2);
+			}
 		} else {
-			this.history.push(operation)
-			return this.methods[operand](+operator1, +operator2);
+			console.log (`${operand} operand`)
 		}
 	}
 	showOperations() {
@@ -89,11 +94,15 @@ calculator.addOperation('-', substraction)
 calculator.addOperation('*', multiplication)
 calculator.addOperation('/', division)
 
+console.log(calculator.performOperation('2 + null'))
+
 //=================================================ticketSales
 
 class TicketSales {
 	constructor() {
-		this.events = {};
+		this.events = {
+			'Movie42': 300
+		};
 		this.storage = 0;
 		this.tickets = {
 			'123456': 300,

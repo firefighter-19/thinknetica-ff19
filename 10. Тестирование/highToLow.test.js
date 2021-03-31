@@ -1,9 +1,9 @@
-//=================================================word.length
-
 describe('Filter array from high to low', () => {
 	it('Should return array as a result', () => assert.isArray(data));
-	it('Should return from high to low', () => assert.deepEqual(fromHighToLow(data), [30, 20, 10, 0, -10, -20]));
-})
+	it('Should accept an array and then return it from high to low', () => {
+		assert.deepEqual(fromHighToLow([-20, -10, 0, 10, 20, 30]), [30, 20, 10, 0, -10, -20]);
+	});
+});
 
 describe('Filter array by word length', () => {
 	it('Should return array as a result', () => assert.isArray(fruits));
@@ -12,7 +12,6 @@ describe('Filter array by word length', () => {
 	});
 })
 
-//=================================================caching
 
 describe('Cache', () => {
 	it('Should return the same result twice', () => {
@@ -52,7 +51,19 @@ describe('Calculator', () => {
 	it('Should clear history', () => {
 		assert.equal(calculator.clearHistory(), 'history is clear')
 	})
+	it('Add operations to history', () => {
+		assert.equal(calculator.performOperation('2 + 2'), 4);
+		assert.equal(calculator.showHistory(), '2 + 2')
+	})
 	describe('Math functions', () => {
+		describe('Possible mistakes', () => {
+			it('Should return NaN if one of the operators is not a number', () => {
+				assert.isNaN(calculator.performOperation(2 + 'x'))
+			})
+			it('Should return undefined if one of the operators is unknown', () => {
+				assert.isUndefined(calculator.addOperation('X', (a, b) => a + b), 'X is not an action')
+			})
+		})
 		describe('Addition', () => {
 			it('Should perform an operation', () => {
 				assert.equal(addition(2, 2), 4)
@@ -80,9 +91,11 @@ describe('Calculator', () => {
 
 describe('Ticket sales', () => {
 	it('Should show the events', () => {
+		assert.deepEqual(ticketWindow.getEvents(), { 'Movie42': 300 })
 		assert.equal(ticketWindow.events['Saw'], undefined)
 		ticketWindow.createEvent('Saw', 300);
-		assert.equal(ticketWindow.events['Saw'], 300)
+		assert.deepEqual(ticketWindow.getEvents(), { 'Movie42': 300, 'Saw': 300 })
+
 	})
 	it('Should show money storage', () => {
 		assert.equal(ticketWindow.storage, 0)
