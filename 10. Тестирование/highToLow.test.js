@@ -23,8 +23,6 @@ describe('Cache', () => {
 	});
 })
 
-//=================================================moneyBox
-
 describe('MoneyBox', () => {
 	it('Should add coin', () => {
 		assert.equal(moneyBox.getAmount(), 0)
@@ -35,8 +33,6 @@ describe('MoneyBox', () => {
 		assert.equal(moneyBox.getAmount(), 1)
 	});
 })
-
-//=================================================calculator
 
 describe('Calculator', () => {
 	it('Should add an operation', () => {
@@ -86,8 +82,6 @@ describe('Calculator', () => {
 		});
 	});
 });
-
-//=================================================ticketSales
 
 describe('Ticket sales', () => {
 	it('Should show the events', () => {
