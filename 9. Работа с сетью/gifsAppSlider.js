@@ -1,6 +1,6 @@
-let input = document.querySelector('.search__box');
-let gif = document.querySelector('.gif');
-let paginationBox = document.querySelector('.pagination__box');
+const input = document.querySelector('.search__box');
+const paginationBox = document.querySelector('.pagination__box');
+const divImg = document.querySelector('.img')
 
 const apiKey = (name) => {
 	const apiKey = 'qjL5hFaEXiaEXz7atrAFipTLjqUwbllH';
@@ -61,7 +61,14 @@ const debounce = (func, ms) => {
 
 const slider = (arr) => {
 	liItems = [];
-	const ul = document.querySelector('.pagination__list');
+
+	const gif = document.createElement('img');
+	divImg.append(gif)
+
+	const ul = document.createElement('ul');
+	ul.classList.add('pagination__list');
+	paginationBox.append(ul);
+
 	if (ul.hasChildNodes()) {
 		while (ul.firstChild) {
 			ul.removeChild(ul.firstChild);
@@ -77,47 +84,34 @@ const slider = (arr) => {
 	liItems[0].classList.add('active');
 	gif.setAttribute('src', arr[0]);
 
-	counter = 0;
-	paginationBox.addEventListener('click', e => {
-		if (e.target.classList.contains('seconds')) {
-			let limit = counter + 1;
-			for (counter; counter < limit && counter < arr.length; counter++) {
-			}
-			if (counter < 10) {
-				gif.setAttribute('src', arr[counter]);
-				// try {
-				// 	liItems[counter - 1].classList.remove('active');
-				// }
-				// catch {
-				// 	alert('click one more time');
-				// }
-				liItems[counter].classList.add('active');
-			}
-		}
-		else if (e.target.classList.contains('first')) {
-			let limit = counter - 1;
-			for (counter; counter > limit && counter >= 0; counter--) {
-			}
-			if (counter >= 0) {
-				gif.setAttribute('src', arr[counter]);
-				try {
-					liItems[counter + 1].classList.remove('active');
+	const counter = () => {
+		let i = 0;
+		paginationBox.addEventListener('click', e => {
+			if (e.target.classList.contains('seconds')) {
+				if (i < 9) {
+					i++;
+					liItems[i - 1].classList.remove('active');
+					liItems[i].classList.add('active');
+					gif.setAttribute('src', arr[i]);
 				}
-				catch {
-					alert('click one more time');
+			} else if (e.target.classList.contains('first')) {
+				if (i > 0) {
+					i--;
+					liItems[i + 1].classList.remove('active');
+					liItems[i].classList.add('active');
+					gif.setAttribute('src', arr[i]);
 				}
-				console.log(counter)
-				liItems[counter].classList.add('active');
 			}
-		}
-	})
+		})
+	}
+	counter();
 }
 
 let onChange = event => {
 	let name = event.target.value;
 	apiCall(apiKey(name))
 		.then(gifs => cache(name, gifs.data))
-		// .catch(gifs => console.log('something went wrong'))
+		.catch(gifs => new Error('Something wenth wrong'))
 		.then(gifs => slider(gifs))
 }
 
