@@ -4,7 +4,6 @@ import { Bishop } from './figures/bishop'
 import { King } from './figures/king'
 import { Queen } from './figures/queen'
 import { Pawn } from './figures/pawn'
-
 class Board {
 	constructor() {
 		this.field = [
