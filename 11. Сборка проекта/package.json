@@ -1,0 +1,23 @@
+{
+	"name": "chess",
+	"version": "1.0.0",
+	"description": "chess-game",
+	"main": "chess.js",
+	"dependencies": {},
+	"devDependencies": {
+		"clean-webpack-plugin": "^4.0.0-alpha.0",
+		"html-webpack-plugin": "^5.3.1",
+		"webpack": "^5.31.2",
+		"webpack-cli": "^4.6.0"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"webpack": "webpack --config webpack.config.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "thinknetica-ff19"
+	},
+	"author": "Sazonov A.I.",
+	"license": "ISC"
+}
