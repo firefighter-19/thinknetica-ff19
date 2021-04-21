@@ -14,7 +14,7 @@ const bookDescription = {
 	'LowestPrice': '10$',
 	'PreferedPrice': '50$',
 	'Gained': '400000$',
-	'Wanted': '1000000$',
+	'Wanted': '1000000$'
 }
 
 export { bookDescription }
