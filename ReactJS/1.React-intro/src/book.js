@@ -16,7 +16,7 @@ const styles = {
 	container: {
 		display: 'flex',
 		'justify-content': 'space-around',
-		'flex-direction': 'column'
+		'flex-direction': 'column',
 	}
 }
 
