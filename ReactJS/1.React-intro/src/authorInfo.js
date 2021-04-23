@@ -36,7 +36,7 @@ const styles = {
 		'align-items': 'center'
 	},
 	block: {
-		'align-items': 'center'
+		'align-items': 'center',
 	},
 	image: {
 		'max-width': '372px',

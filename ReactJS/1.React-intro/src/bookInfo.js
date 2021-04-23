@@ -34,7 +34,7 @@ const styles = {
 	container: {
 		display: 'flex',
 		'max-width': '600px',
-		border: '2px solid black'
+		border: '2px solid black',
 	},
 	column: {
 		'display': 'flex',
