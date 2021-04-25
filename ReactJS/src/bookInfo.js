@@ -33,20 +33,20 @@ class BookInfo extends React.Component {
 const styles = {
 	container: {
 		display: 'flex',
-		'max-width': '600px',
+		maxWidth: '600px',
 		border: '2px solid black',
 	},
 	column: {
-		'display': 'flex',
-		'justify-content': 'space-around',
-		'flex': '1',
-		'align-items': 'center'
+		display: 'flex',
+		justifyContent: 'space-around',
+		flex: '1',
+		alignItems: 'center'
 	},
 	block: {
-		'align-items': 'center'
+		alignItems: 'center'
 	},
 	image: {
-		'max-width': '120px',
+		maxWidth: '120px',
 	}
 }
 

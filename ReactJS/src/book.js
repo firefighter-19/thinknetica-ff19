@@ -17,8 +17,8 @@ class Book extends React.Component {
 const styles = {
 	container: {
 		display: 'flex',
-		'justify-content': 'space-around',
-		'flex-direction': 'column',
+		justifyContent: 'space-around',
+		flexDirection: 'column',
 	}
 }
 
