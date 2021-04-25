@@ -1,6 +1,6 @@
 /11. Сборка проекта/dist
 /11. Сборка проекта/node_modules
 /11. Сборка проекта/package-lock.json
-/ReactJS/1.React-intro/node_modules
-/ReactJS/1.React-intro/.parcel-cache
-/ReactJS/1.React-intro/dist
+/ReactJS/.parcel-cache
+/ReactJS/dist
+/ReactJS/node_modules
