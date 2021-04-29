@@ -10,7 +10,7 @@ class AuthorInfo extends React.Component {
 		} = this.props
 		return (
 			<div style={styles.container}>
-				<div>
+				<div style={styles.imageBlock}>
 					<img style={styles.image} src={avatar} alt="" />
 				</div>
 				<div>
@@ -38,10 +38,14 @@ const styles = {
 	block: {
 		alignItems: 'center',
 	},
+	imageBlock: {
+		maxWidth: '150px'
+	},
 	image: {
-		maxWidth: '372px',
+		width: '100%',
+		height: '100%',
 		objectFit: 'cover'
-	}
+	},
 }
 
 export { AuthorInfo }

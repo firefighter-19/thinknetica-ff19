@@ -17,15 +17,17 @@ class BookList extends React.Component {
 	}
 	render() {
 		const { threeElemPerPage } = this.state;
-		console.log(this.props.bookData)
 		return (
-			<div>
+			<div style={styles.container}>
+				<button onClick={() => this.toggleQuantity()}>{this.showHideBooks(threeElemPerPage)} {this.props.bookData.length - 3} more</button>
 				{
-					this.props.bookData.map(book => (
-						<div key={book.Id} style={styles.margin}>
-							<Book book={book} />
-						</div>
-					))
+					this.props.bookData
+						.filter(book => book.Id < 4 || threeElemPerPage)
+						.map(book => (
+							<div key={book.Id} style={styles.margin}>
+								<Book book={book} />
+							</div>
+						))
 				}
 			</div>
 		)
@@ -37,5 +39,9 @@ export { BookList }
 const styles = {
 	margin: {
 		margin: '20px 0'
+	},
+	container: {
+		maxWidth: '1200px',
+		margin: '10px auto'
 	}
 }

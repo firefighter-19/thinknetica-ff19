@@ -17,7 +17,9 @@ const styles = {
 		width: '100%',
 		height: '90px',
 		display: 'flex',
-		justifyContent: 'center'
+		flex: '1',
+		justifyContent: 'center',
+		backgroundColor: 'black'
 	},
 	image: {
 		objectFit: 'cover',

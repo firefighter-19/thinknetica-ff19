@@ -7,15 +7,13 @@ import { Subscribe } from './subscribe'
 class Book extends React.Component {
 	render() {
 		return (
-			<>
-				<div style={styles.container}>
-					<main>
-						<div><BookInfo book={this.props.book} /></div>
-						<div><AuthorInfo book={this.props.book} /></div>
-						<div><Subscribe /></div>
-					</main>
-				</div>
-			</>
+			<div>
+				<main style={styles.container}>
+					<div><BookInfo book={this.props.book} /></div>
+					<div><AuthorInfo book={this.props.book} /></div>
+				</main>
+				<div><Subscribe /></div>
+			</div>
 		)
 	}
 }
@@ -23,11 +21,11 @@ class Book extends React.Component {
 const styles = {
 	container: {
 		display: 'flex',
-		justifyContent: 'space-around',
-		flexDirection: 'column',
-		alignItems: 'center',
-		width: '100%',
-		height: '100%'
+		justifyContent: 'flex-start',
+		// flexDirection: 'column',
+		// alignItems: 'center',
+		// width: '100%',
+		// height: '100%',
 	}
 }
 

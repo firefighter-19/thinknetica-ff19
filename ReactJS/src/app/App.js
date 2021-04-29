@@ -22,9 +22,8 @@ class App extends React.Component {
 const styles = {
 	container: {
 		display: 'flex',
-		justifyContent: 'space-around',
+		flex: '1 1 100%',
 		flexDirection: 'column',
-		alignItems: 'center',
 		width: '100%',
 		height: '100%'
 	}
