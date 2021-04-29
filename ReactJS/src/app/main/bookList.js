@@ -1,7 +1,6 @@
 import React from 'react';
 import { Book } from './book';
 
-
 class BookList extends React.Component {
 	constructor(props) {
 		super(props);
@@ -18,19 +17,16 @@ class BookList extends React.Component {
 	}
 	render() {
 		const { threeElemPerPage } = this.state;
+		console.log(this.props.bookData)
 		return (
 			<div>
-				<button onClick={() => this.toggleQuantity()} >
-					{this.showHideBooks(threeElemPerPage)} {this.props.bookData.length - 3} more
-				</button>
 				{
-					this.props.bookData.filter(book => book.id < 4 || threeElemPerPage)
-						.map(book => (
-							<div style={styles.margin}>
-								<Book key={book.id} book={book} />
-							</div>
-
-						))}
+					this.props.bookData.map(book => (
+						<div key={book.Id} style={styles.margin}>
+							<Book book={book} />
+						</div>
+					))
+				}
 			</div>
 		)
 	}

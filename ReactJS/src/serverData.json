@@ -16,7 +16,7 @@
 		"PreferedPrice": "$50",
 		"Gained": "$400000",
 		"Wanted": "$1000000",
-		"id": "1"
+		"Id": "1"
 	},
 	{
 		"Title": "The Laughing Man",
@@ -35,7 +35,7 @@
 		"PreferedPrice": "$50",
 		"Gained": "$400000",
 		"Wanted": "$1000000",
-		"id": "2"
+		"Id": "2"
 	},
 	{
 		"Title": "V for vendetta",
@@ -54,25 +54,25 @@
 		"PreferedPrice": "$50",
 		"Gained": "$400000",
 		"Wanted": "$1000000",
-		"id": "3"
+		"Id": "3"
 	},
 	{
-		"Title": "V for vendetta",
+		"Title": "Day Z",
 		"Description": "This book is about...",
-		"Pages": "250",
+		"Pages": "252",
 		"Language": "English",
-		"ProgressBar": "90%",
-		"Cover": "https://upload.wikimedia.org/wikipedia/ru/c/c0/V_for_vendettax.jpg",
+		"ProgressBar": "20%",
+		"Cover": "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/action-thriller-book-cover-design-template-3675ae3e3ac7ee095fc793ab61b812cc_screen.jpg?ts=1588152105",
 		"Author": {
 			"name": "Alan Moore",
 			"email": "abc@gmail.com",
-			"avatar": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Alan_Moore_%282%29.jpg/411px-Alan_Moore_%282%29.jpg",
+			"avatar": "https://dmdlnu87i51n1.cloudfront.net/v1/uk/cjo0buwee45gp0105fb4j1x5c/0x0:500x646/960x960/jean_etienne_liotard_portrait_of_empress_maria_theresa_1762.jpg",
 			"bio": "Short bio"
 		},
 		"LowestPrice": "$10",
 		"PreferedPrice": "$50",
 		"Gained": "$400000",
 		"Wanted": "$1000000",
-		"id": "4"
+		"Id": "4"
 	}
 ]

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Header } from './header'
-import { Footer } from './footer'
-import { BookList } from './bookList';
+import { Header } from './header/header'
+import { Footer } from './footer/footer'
+import { BookList } from './main/bookList';
 class App extends React.Component {
 	render() {
 		return (
