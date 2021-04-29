@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { Book } from './book'
-import { bookDescription } from './serverData'
+import { App } from './App'
+import data from './serverData.json'
 
 ReactDOM.render(
-	<Book book={bookDescription} />,
+	<App bookData={data} />,
 	document.getElementById('root')
 )

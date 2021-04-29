@@ -1,19 +1,18 @@
 import React from 'react';
 
-import { BookInfo } from './bookInfo'
-import { AuthorInfo } from './authorInfo'
-import { Subscribe } from './subscribe'
-
-class Book extends React.Component {
+import { Header } from './header'
+import { Footer } from './footer'
+import { BookList } from './bookList';
+class App extends React.Component {
 	render() {
 		return (
 			<>
 				<div style={styles.container}>
+					<header><Header /></header>
 					<main>
-						<div><BookInfo book={this.props.book} /></div>
-						<div><AuthorInfo book={this.props.book} /></div>
-						<div><Subscribe /></div>
+						<div><BookList bookData={this.props.bookData} /></div>
 					</main>
+					<footer><Footer /></footer>
 				</div>
 			</>
 		)
@@ -31,4 +30,4 @@ const styles = {
 	}
 }
 
-export { Book }
+export { App }

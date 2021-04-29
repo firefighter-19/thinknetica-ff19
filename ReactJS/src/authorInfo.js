@@ -40,6 +40,7 @@ const styles = {
 	},
 	image: {
 		maxWidth: '372px',
+		objectFit: 'cover'
 	}
 }
 

@@ -1,0 +1,78 @@
+[
+	{
+		"Title": "Fahrenheit 451",
+		"Description": "This book is about...",
+		"Pages": "250",
+		"Language": "English",
+		"ProgressBar": "30%",
+		"Cover": "https://i.pinimg.com/originals/c3/ca/13/c3ca136cb0ee2f26341fc01974b929e5.jpg",
+		"Author": {
+			"name": "Ray Douglas Bradbury",
+			"email": "123@gmail.com",
+			"avatar": "https://litreactor.com/sites/default/files/images/column/headers/the-martian-chronicles.jpg",
+			"bio": "Short bio"
+		},
+		"LowestPrice": "$10",
+		"PreferedPrice": "$50",
+		"Gained": "$400000",
+		"Wanted": "$1000000",
+		"id": "1"
+	},
+	{
+		"Title": "The Laughing Man",
+		"Description": "This book is about...",
+		"Pages": "321",
+		"Language": "English",
+		"ProgressBar": "30%",
+		"Cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1372036124l/15986803.jpg",
+		"Author": {
+			"name": "Jerome David Salinger",
+			"email": "12223@gmail.com",
+			"avatar": "https://i.guim.co.uk/img/media/d1b3b54800596582aa87adc23724adcfe356f329/0_236_4055_2433/master/4055.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=b478921dcc5ebbbfc3701acd1d0b9f55",
+			"bio": "Short bio"
+		},
+		"LowestPrice": "$10",
+		"PreferedPrice": "$50",
+		"Gained": "$400000",
+		"Wanted": "$1000000",
+		"id": "2"
+	},
+	{
+		"Title": "V for vendetta",
+		"Description": "This book is about...",
+		"Pages": "250",
+		"Language": "English",
+		"ProgressBar": "90%",
+		"Cover": "https://upload.wikimedia.org/wikipedia/ru/c/c0/V_for_vendettax.jpg",
+		"Author": {
+			"name": "Alan Moore",
+			"email": "abc@gmail.com",
+			"avatar": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Alan_Moore_%282%29.jpg/411px-Alan_Moore_%282%29.jpg",
+			"bio": "Short bio"
+		},
+		"LowestPrice": "$10",
+		"PreferedPrice": "$50",
+		"Gained": "$400000",
+		"Wanted": "$1000000",
+		"id": "3"
+	},
+	{
+		"Title": "V for vendetta",
+		"Description": "This book is about...",
+		"Pages": "250",
+		"Language": "English",
+		"ProgressBar": "90%",
+		"Cover": "https://upload.wikimedia.org/wikipedia/ru/c/c0/V_for_vendettax.jpg",
+		"Author": {
+			"name": "Alan Moore",
+			"email": "abc@gmail.com",
+			"avatar": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Alan_Moore_%282%29.jpg/411px-Alan_Moore_%282%29.jpg",
+			"bio": "Short bio"
+		},
+		"LowestPrice": "$10",
+		"PreferedPrice": "$50",
+		"Gained": "$400000",
+		"Wanted": "$1000000",
+		"id": "4"
+	}
+]
