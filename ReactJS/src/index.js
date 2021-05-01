@@ -5,6 +5,6 @@ import { App } from './app/App'
 import data from './serverData.json'
 
 ReactDOM.render(
-	<App bookData={data} />,
-	document.getElementById('root')
+  <App bookData={data} />,
+  document.getElementById('modal-root')
 )
