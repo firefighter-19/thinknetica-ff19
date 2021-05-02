@@ -1,25 +1,21 @@
 import React from 'react';
 import { SubscribeRules } from './subscribeRules'
+import { Popular } from './popular'
 
-
-const displayStar = (subscribers) => {
-  return subscribers > 400 ? <div><b>Popular!</b></div> : false
-}
 class Subscribe extends React.Component {
   render() {
+    const {
+      book: {
+        Subscribers
+      }
+    } = this.props
     return (
-      <div style={styles.container}>
-        {displayStar(this.props.book.Subscribers)}
+      <>
+        { Subscribers > 400 && <Popular />}
         <SubscribeRules />
-      </div>
+      </>
     )
   }
 }
 
 export { Subscribe }
-
-const styles = {
-  container: {
-    position: 'relative'
-  }
-}

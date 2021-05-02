@@ -2,10 +2,8 @@ import React from 'react';
 class AuthorInfo extends React.Component {
   render() {
     const {
-      book: {
-        Author: {
-          name, email, avatar, bio
-        }
+      Author: {
+        name, email, avatar, bio
       }
     } = this.props
     return (

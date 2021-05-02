@@ -6,15 +6,13 @@ import { BookList } from './main/bookList';
 class App extends React.Component {
   render() {
     return (
-      <>
-        <div style={styles.container}>
-          <header><Header /></header>
-          <main>
-            <div><BookList bookData={this.props.bookData} /></div>
-          </main>
-          <footer><Footer /></footer>
-        </div>
-      </>
+      <div style={styles.container}>
+        <header><Header /></header>
+        <main>
+          <div><BookList bookData={this.props.bookData} /></div>
+        </main>
+        <footer><Footer /></footer>
+      </div>
     )
   }
 }

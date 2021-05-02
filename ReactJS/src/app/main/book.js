@@ -15,7 +15,7 @@ class Book extends React.Component {
     return (
       <main style={styles.container}>
         <div><BookInfo book={this.props.book} /></div>
-        <div><AuthorInfo book={this.props.book} /></div>
+        <div><AuthorInfo Author={this.props.book.Author} /></div>
         <div>
           <Subscribe book={this.props.book} />
         </div>
