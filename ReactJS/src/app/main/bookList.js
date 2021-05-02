@@ -53,23 +53,3 @@ const styles = {
     margin: '0 auto'
   }
 }
-
-/*
-{
-  this.state.threeElemPerPage
-    ? <button onClick={this.showElements}>Hide</button>
-    && this.props.bookData
-      .slice(0, 3)
-      .map(book =>
-        <div key={book.Id} style={styles.margin}>
-          <Book book={book} />
-        </div>
-      )
-    : <button onClick={this.hideElements}>Show {this.props.bookData.length - 3} more</button>
-    && this.props.bookData.map(book =>
-      <div key={book.Id} style={styles.margin}>
-        <Book book={book} />
-      </div>
-    )
-}
-*/
