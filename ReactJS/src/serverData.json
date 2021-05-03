@@ -1,0 +1,82 @@
+[
+  {
+    "Title": "Fahrenheit 451",
+    "Description": "This book is about...",
+    "Pages": "250",
+    "Language": "English",
+    "ProgressBar": "30%",
+    "Cover": "https://pdfshelfs1.s3-accelerate.amazonaws.com/2021/02/71Z48-UWhGL-7.jpg",
+    "Author": {
+      "name": "Ray Douglas Bradbury",
+      "email": "123@gmail.com",
+      "avatar": "https://images.gr-assets.com/authors/1445955959p8/1630.jpg",
+      "bio": "Short bio"
+    },
+    "LowestPrice": "$10",
+    "PreferedPrice": "$50",
+    "Gained": "$400000",
+    "Wanted": "$1000000",
+    "Subscribers": "198",
+    "Id": "1"
+  },
+  {
+    "Title": "The Laughing Man",
+    "Description": "This book is about...",
+    "Pages": "321",
+    "Language": "English",
+    "ProgressBar": "30%",
+    "Cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1372036124l/15986803.jpg",
+    "Author": {
+      "name": "Jerome David Salinger",
+      "email": "12223@gmail.com",
+      "avatar": "https://i.guim.co.uk/img/media/d1b3b54800596582aa87adc23724adcfe356f329/0_236_4055_2433/master/4055.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=b478921dcc5ebbbfc3701acd1d0b9f55",
+      "bio": "Short bio"
+    },
+    "LowestPrice": "$10",
+    "PreferedPrice": "$50",
+    "Gained": "$400000",
+    "Wanted": "$1000000",
+    "Subscribers": "211",
+    "Id": "2"
+  },
+  {
+    "Title": "V for vendetta",
+    "Description": "This book is about...",
+    "Pages": "250",
+    "Language": "English",
+    "ProgressBar": "90%",
+    "Cover": "https://upload.wikimedia.org/wikipedia/ru/c/c0/V_for_vendettax.jpg",
+    "Author": {
+      "name": "Alan Moore",
+      "email": "abc@gmail.com",
+      "avatar": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Alan_Moore_%282%29.jpg/411px-Alan_Moore_%282%29.jpg",
+      "bio": "Short bio"
+    },
+    "LowestPrice": "$10",
+    "PreferedPrice": "$50",
+    "Gained": "$400000",
+    "Wanted": "$1000000",
+    "Subscribers": "422",
+    "Id": "3"
+  },
+  {
+    "Title": "Day Z",
+    "Description": "This book is about...",
+    "Pages": "252",
+    "Language": "English",
+    "ProgressBar": "20%",
+    "Cover": "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/action-thriller-book-cover-design-template-3675ae3e3ac7ee095fc793ab61b812cc_screen.jpg?ts=1588152105",
+    "Author": {
+      "name": "Alan Moore",
+      "email": "abc@gmail.com",
+      "avatar": "https://dmdlnu87i51n1.cloudfront.net/v1/uk/cjo0buwee45gp0105fb4j1x5c/0x0:500x646/960x960/jean_etienne_liotard_portrait_of_empress_maria_theresa_1762.jpg",
+      "bio": "Short bio"
+    },
+    "LowestPrice": "$10",
+    "PreferedPrice": "$50",
+    "Gained": "$400000",
+    "Wanted": "$1000000",
+    "Subscribers": "398",
+    "Id": "4"
+  }
+]

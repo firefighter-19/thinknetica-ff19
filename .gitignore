@@ -4,3 +4,5 @@
 /ReactJS/.parcel-cache
 /ReactJS/dist
 /ReactJS/node_modules
+/ReactJS/.cache
+/ReactJS/package-lock.json
